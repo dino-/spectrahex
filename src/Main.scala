@@ -72,10 +72,10 @@ object Main {
 
    def randomTiles (diff: Difficulty) = {
       val distMapping = diff match {
-         case Easy         => List((45, Color.randomPrimary _))
-         case Intermediate => List((34, Color.randomPrimary _), (11, Color.randomSecondary _))
+         case Easy         => List((45, randomPrimary _))
+         case Intermediate => List((34, randomPrimary _), (11, randomSecondary _))
          case Difficult    =>
-            List((20, Color.randomPrimary _), (20, Color.randomSecondary _), (5, Color.randomTertiary _))
+            List((20, randomPrimary _), (20, randomSecondary _), (5, randomTertiary _))
       }
 
       Random.shuffle (distMapping flatMap { case (n, f) => List.fill (n) (f.apply) })
@@ -87,7 +87,7 @@ object Main {
 
 
    def remainingTiles (b: Board): Int =
-      b.map { case (Cell(_, color)) => Color.totalTiles(color) } sum
+      b.map { case (Cell(_, color)) => totalTiles(color) } sum
 
 
    val absMoves: List[(Pos, Pos)] = List(
