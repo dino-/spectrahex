@@ -120,9 +120,9 @@ object Main {
          case (_, d) => withinBoard (b) (d)
       } filter { 
          case (p1, p2) => (assessMove
-            ((cellAt (b) (selection)).color)
-            ((cellAt (b) (p1)).color)
-            ((cellAt (b) (p2)).color)
+            (colorAt (b) (selection))
+            (colorAt (b) (p1))
+            (colorAt (b) (p2))
          ) isDefined
       }
    }
@@ -137,6 +137,9 @@ object Main {
 
    def cellAt (b: Board) (p: Pos): Cell =
       b.filter { (cell) => (cell.pos.x == p.x) && (cell.pos.y == p.y) }.head
+
+
+   def colorAt (b: Board) (p: Pos): Color = (cellAt (b) (p)) color
    
 
 }
