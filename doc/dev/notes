@@ -1,0 +1,18 @@
+Distribution for different difficulty levels:
+
+total pri's 45        56       75
+
+primary     45 100%   34 75%   20 43.75%
+
+secondary    X        11 25%   20 43.75%
+
+tertiary     X         X        5 12.5%
+
+difficulty   E        I        D
+
+
+So, this means:
+
+An Easy game will have 45 randomly selected primaries.
+An Intermediate game will have 34 randomly selected primaries and 11 randomly selected secondaries.
+A Difficult game will have 20 randomly selected primaries, 20 randomly selected secondaries and 5 tertiaries (which can only be Gray. But are a bitch to get rid of)
