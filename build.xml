@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SpectraHex">
+
+    <!-- The local.properties file is created and updated by the 'android' tool.
+         It contains the path to the SDK. It should *NOT* be checked in in Version
+         Control Systems. -->
+    <property file="local.properties" />
+
+    <!-- The build.properties file can be created by you and is never touched
+         by the 'android' tool. This is the place to change some of the default property values
+         used by the Ant rules.
+         Here are some properties you may want to change/update:
+
+         application.package
+             the name of your application package as defined in the manifest. Used by the
+             'uninstall' rule.
+         source.dir
+             the name of the source directory. Default is 'src'.
+         out.dir
+             the name of the output directory. Default is 'bin'.
+
+         Properties related to the SDK location or the project target should be updated
+          using the 'android' tool with the 'update' action.
+
+         This file is an integral part of the build system for your application and
+         should be checked in in Version Control Systems.
+
+         -->
+    <property file="build.properties" />
+
+    <!-- The default.properties file is created and updated by the 'android' tool, as well
+         as ADT.
+         This file is an integral part of the build system for your application and
+         should be checked in in Version Control Systems. -->
+    <property file="default.properties" />
+
+    <!-- Custom Android task to deal with the project target, and import the proper rules.
+         This requires ant 1.6.0 or above. -->
+    <path id="android.antlibs">
+        <pathelement path="${sdk.dir}/tools/lib/anttasks.jar" />
+        <pathelement path="${sdk.dir}/tools/lib/sdklib.jar" />
+        <pathelement path="${sdk.dir}/tools/lib/androidprefs.jar" />
+        <pathelement path="${sdk.dir}/tools/lib/apkbuilder.jar" />
+        <pathelement path="${sdk.dir}/tools/lib/jarutils.jar" />
+    </path>
+
+    <taskdef name="setup"
+        classname="com.android.ant.SetupTask"
+        classpathref="android.antlibs" />
+
+    <!-- Execute the Android Setup task that will setup some properties specific to the target,
+         and import the build rules files.
+
+         The rules file is imported from
+            <SDK>/platforms/<target_platform>/templates/android_rules.xml
+
+         To customize some build steps for your project:
+         - copy the content of the main node <project> from android_rules.xml
+         - paste it in this build.xml below the <setup /> task.
+         - disable the import by changing the setup task below to <setup import="false" />
+
+         This will ensure that the properties are setup correctly but that your customized
+         build steps are used.
+    -->
+    <setup />
+
+
+	<!-- Configurable macro, which allows to pass as parameters output directory,
+	     output dex filename and external libraries to dex (optional) -->
+	<macrodef name="dex-helper-proguard">
+	   <element name="external-libs" optional="yes" />
+	   <element name="extra-parameters" optional="yes" />
+	   <sequential>
+	     <echo>Converting compiled files and external libraries into ${intermediate.dex.file}...
+	     </echo>
+	     <apply executable="${dx}" failonerror="true" parallel="true">
+	         <arg value="--dex" />
+	         <arg value="--output=${intermediate.dex.file}" />
+	         <extra-parameters />
+	         <arg line="${verbose.option}" />
+	         <arg path="${out.absolute.dir}/classes.min.jar" />
+	         <fileset dir="${external.libs.absolute.dir}" includes="*.min.jar" />
+	         <external-libs />
+	     </apply>
+	   </sequential>
+	</macrodef>
+
+
+   <taskdef resource="scala/tools/ant/antlib.xml"
+            classpath="${scala.dir}/lib/scala-compiler.jar:${scala.dir}/lib/scala-library.jar" />
+
+   <taskdef resource="proguard/ant/task.properties"
+	         classpath="${proguard.dir}/proguard.jar" />
+
+	<target name="proguard" depends="compile">
+      <proguard>
+         -injars ${out.classes.absolute.dir}:${scala.dir}/lib/scala-library.jar(!META-INF/MANIFEST.MF,!library.properties)
+         -outjars "${out.absolute.dir}/classes.min.jar"
+         -libraryjars "${android.jar}"
+         -dontwarn
+         -dontoptimize
+         -dontobfuscate
+         -keep public class * extends android.app.Activity
+      </proguard>
+   </target>
+
+	<target name="compile" depends="android_rules.compile" >
+		<scalac force="changed" deprecation="on"
+		        destdir="${out.classes.absolute.dir}"
+				bootclasspathref="android.target.classpath">
+	        <src path="${source.absolute.dir}" />
+	        <src path="${gen.absolute.dir}" />
+		    <classpath>
+				<fileset dir="${external.libs.absolute.dir}" includes="*.jar" />
+            <fileset file="${scala.dir}/lib/scala-compiler.jar" />
+            <fileset file="${scala.dir}/lib/scala-library.jar" />
+		    </classpath>
+		</scalac>
+   </target>
+
+	<!-- Converts this project's .class files into .dex files -->
+	<target name="-dex" depends="proguard">
+	    <dex-helper-proguard />
+	</target>
+
+	<target name="-dex-instrumented" depends="-emma-instrument">
+	   <dex-helper-proguard>
+	      <extra-parameters>
+	        <arg value="--no-locals" />
+	      </extra-parameters>
+	      <external-libs>
+	        <fileset file="${emma.dir}/emma_device.jar" />
+	      </external-libs>
+	   </dex-helper-proguard>
+	</target>
+ 
+
+</project>

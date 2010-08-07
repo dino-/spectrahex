@@ -113,5 +113,6 @@
 (^|/)\.DS_Store$
 
 (^|/)bin($|/)
-(^|/)lib($|/)
+(^|/)gen($|/)
+(^|/)libs($|/)
 \.scala_dependencies

@@ -1,7 +1,9 @@
+package android.spectrahex.game
+
 import scala.util.Random
 
-import colorjump.color._
-import colorjump.color.Color._
+import android.spectrahex.game.color._
+import android.spectrahex.game.color.Color._
 
 
 case class Pos (x: Int, y: Int)
@@ -16,7 +18,7 @@ case object Intermediate extends Difficulty
 case object Difficult extends Difficulty
 
 
-object Main {
+object Game {
 
    type Board = List[Cell]
 
