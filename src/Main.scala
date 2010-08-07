@@ -21,53 +21,9 @@ object Main {
    type Board = List[Cell]
 
 
-   val emptyBoard = List(
-      Cell(Pos(-2,  5), NoColor),
-      Cell(Pos(-2,  4), NoColor),
-      Cell(Pos(-2,  3), NoColor),
-      Cell(Pos(-2,  2), NoColor),
-      Cell(Pos(-2,  1), NoColor),
-      Cell(Pos(-2,  0), NoColor),
-      Cell(Pos(-2, -1), NoColor),
-      Cell(Pos(-2, -2), NoColor),
-      Cell(Pos(-1,  4), NoColor),
-      Cell(Pos(-1,  3), NoColor),
-      Cell(Pos(-1,  2), NoColor),
-      Cell(Pos(-1,  1), NoColor),
-      Cell(Pos(-1,  0), NoColor),
-      Cell(Pos(-1, -1), NoColor),
-      Cell(Pos(-1, -2), NoColor),
-      Cell(Pos( 0,  4), NoColor),
-      Cell(Pos( 0,  3), NoColor),
-      Cell(Pos( 0,  2), NoColor),
-      Cell(Pos( 0,  1), NoColor),
-      Cell(Pos( 0,  0), NoColor),
-      Cell(Pos( 0, -1), NoColor),
-      Cell(Pos( 0, -2), NoColor),
-      Cell(Pos( 0, -3), NoColor),
-      Cell(Pos( 1,  3), NoColor),
-      Cell(Pos( 1,  2), NoColor),
-      Cell(Pos( 1,  1), NoColor),
-      Cell(Pos( 1,  0), NoColor),
-      Cell(Pos( 1, -1), NoColor),
-      Cell(Pos( 1, -2), NoColor),
-      Cell(Pos( 1, -3), NoColor),
-      Cell(Pos( 2,  3), NoColor),
-      Cell(Pos( 2,  2), NoColor),
-      Cell(Pos( 2,  1), NoColor),
-      Cell(Pos( 2,  0), NoColor),
-      Cell(Pos( 2, -1), NoColor),
-      Cell(Pos( 2, -2), NoColor),
-      Cell(Pos( 2, -3), NoColor),
-      Cell(Pos( 2, -4), NoColor),
-      Cell(Pos( 3,  2), NoColor),
-      Cell(Pos( 3,  1), NoColor),
-      Cell(Pos( 3,  0), NoColor),
-      Cell(Pos( 3, -1), NoColor),
-      Cell(Pos( 3, -2), NoColor),
-      Cell(Pos( 3, -3), NoColor),
-      Cell(Pos( 3, -4), NoColor)
-      )
+   val emptyBoard =
+         (for (x <- (0 to 5); y <- (0 to 8))
+          yield (Cell(Pos(x, y), NoColor))).toList
 
 
    def randomTiles (diff: Difficulty) = {
@@ -91,12 +47,12 @@ object Main {
 
 
    val absMoves: List[(Pos, Pos)] = List(
-      (Pos(0, 1), Pos(0, 2)),
-      (Pos(1, 0), Pos(2, 0)),
-      (Pos(1, -1), Pos(2, -2)),
-      (Pos(0, -1), Pos(0, -2)),
-      (Pos(-1, 0), Pos(-2, 0)),
-      (Pos(-1, 1), Pos(-2, 2))
+      (Pos( 1, -1), Pos( 2, -1)),
+      (Pos( 1,  0), Pos( 2,  1)),
+      (Pos( 0,  1), Pos( 0,  2)),
+      (Pos(-1,  0), Pos(-2,  1)),
+      (Pos(-1, -1), Pos(-2, -1)),
+      (Pos( 0, -1), Pos( 0, -2))
       )
 
 
@@ -110,12 +66,13 @@ object Main {
 // Can still move is: legalMoves > 0
 
 
-   def legalMoves (b: Board) (selection: Pos) = {
-      def transformPair (p: Pos) (pair: (Pos, Pos)) =
-         pair match {
-            case (p1, p2) => ((transformPos (p) (p1)), (transformPos (p) (p2)))
-         }
+   def transformPair (p: Pos) (pair: (Pos, Pos)) =
+      pair match {
+         case (p1, p2) => ((transformPos (p) (p1)), (transformPos (p) (p2)))
+      }
 
+
+   def legalMoves (b: Board) (selection: Pos) = {
       absMoves.map(transformPair (selection) _) filter { 
          case (_, d) => withinBoard (b) (d)
       } filter { 
