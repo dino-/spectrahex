@@ -12,8 +12,13 @@ import android.util.DisplayMetrics
 //import android.util.Log
 import android.view.View
 
+import android.spectrahex.game._
+import android.spectrahex.game.Game._
+import android.spectrahex.game.color.{Color => SymColor, _}
 
-class DrawableView (context: Context) extends View(context) {
+
+class DrawableView private (context: Context, board: Board)
+   extends View(context) {
 
    private var hexPaths: List[((Int, Int), Path)] = List()
    private var fillPaint = new Paint
@@ -22,8 +27,13 @@ class DrawableView (context: Context) extends View(context) {
    private val colorDustyBlue = 0xFF097286
 
 
-   def this (context: Context, screenWidth: Int, screenHeight: Int) = {
-      this (context)
+   def this (
+      context: Context,
+      board: Board,
+      screenWidth: Int,
+      screenHeight: Int) = {
+
+      this (context, board)
 
       // Construct the paints we'll need for all drawing
 
@@ -96,9 +106,28 @@ class DrawableView (context: Context) extends View(context) {
    }
 
 
+   def colorMap (symColor: SymColor): Int =
+      symColor match {
+         case NoColor => Color.BLACK
+         case Red     => Color.RED
+         case Blue    => Color.BLUE
+         case Yellow  => Color.YELLOW
+         //case Violet  => 0xff960096
+         case Violet  => 0xff990099
+         case Green   => Color.GREEN
+         //case Green   => 0xff339900
+         case Orange  => 0xffff6600
+         //case Gray    => Color.GRAY
+         case Gray    => 0xff424242
+      }
+
+
    override def onDraw (canvas: Canvas) = {
       hexPaths.foreach {
-         case ((_, _), path) => {
+         case ((x, y), path) => {
+            val sc = colorAt (board) (Pos(x, y))
+            fillPaint.setColor(colorMap(sc))
+
             canvas.drawPath (path, fillPaint)
             canvas.drawPath (path, strokePaint)
          }
@@ -118,7 +147,9 @@ class SpectraHex extends Activity {
       val dm = new DisplayMetrics
       getWindowManager().getDefaultDisplay().getMetrics(dm)
 
-      val dv = new DrawableView (this, dm.widthPixels, dm.heightPixels)
+      val board = Game.randomBoard(Difficult)
+
+      val dv = new DrawableView (this, board, dm.widthPixels, dm.heightPixels)
       setContentView (dv)
    }
 
