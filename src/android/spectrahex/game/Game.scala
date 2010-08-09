@@ -18,6 +18,8 @@ case object Intermediate extends Difficulty
 case object Difficult extends Difficulty
 
 
+class Game (var board: Game.Board, var selection: Option[Pos])
+
 object Game {
 
    type Board = List[Cell]
@@ -105,6 +107,9 @@ object Game {
 
 
    def colorAt (b: Board) (p: Pos): Color = (cellAt (b) (p)) color
-   
+
+
+   def mkGame (difficulty: Difficulty): Game =
+      new Game(randomBoard(difficulty), None)
 
 }

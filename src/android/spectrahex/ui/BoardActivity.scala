@@ -18,7 +18,7 @@ import android.spectrahex.game.Game._
 import android.spectrahex.game.color.{Color => SymColor, _}
 
 
-class GameView private (context: Context, board: Board)
+class GameView private (context: Context, game: Game)
    extends View(context) {
 
    private var hexPaths: List[((Int, Int), Path)] = List()
@@ -30,11 +30,11 @@ class GameView private (context: Context, board: Board)
 
    def this (
       context: Context,
-      board: Board,
+      game: Game,
       screenWidth: Int,
       screenHeight: Int) = {
 
-      this (context, board)
+      this (context, game)
 
       // Construct the paints we'll need for all drawing
 
@@ -126,7 +126,7 @@ class GameView private (context: Context, board: Board)
    override def onDraw (canvas: Canvas) = {
       hexPaths.foreach {
          case ((x, y), path) => {
-            val sc = colorAt (board) (Pos(x, y))
+            val sc = colorAt (game.board) (Pos(x, y))
             fillPaint.setColor(colorMap(sc))
 
             canvas.drawPath (path, fillPaint)
@@ -150,9 +150,9 @@ class SpectraHex extends Activity {
       val dm = new DisplayMetrics
       getWindowManager().getDefaultDisplay().getMetrics(dm)
 
-      val board = Game.randomBoard(Difficult)
+      val game = Game.mkGame(Intermediate)
 
-      val view = new GameView (this, board, dm.widthPixels, dm.heightPixels)
+      val view = new GameView (this, game, dm.widthPixels, dm.heightPixels)
       setContentView (view)
    }
 
