@@ -18,7 +18,7 @@ import android.spectrahex.game.Game._
 import android.spectrahex.game.color.{Color => SymColor, _}
 
 
-class DrawableView private (context: Context, board: Board)
+class GameView private (context: Context, board: Board)
    extends View(context) {
 
    private var hexPaths: List[((Int, Int), Path)] = List()
@@ -152,8 +152,8 @@ class SpectraHex extends Activity {
 
       val board = Game.randomBoard(Difficult)
 
-      val dv = new DrawableView (this, board, dm.widthPixels, dm.heightPixels)
-      setContentView (dv)
+      val view = new GameView (this, board, dm.widthPixels, dm.heightPixels)
+      setContentView (view)
    }
 
 }
