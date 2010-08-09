@@ -53,7 +53,7 @@ class GameView private (context: Context, game: Game)
       /* Will want to calculate radius, horiz and vertical offsets
          from screen dimensions later */
       val screenOffsetX = 47
-      val screenOffsetY = 45
+      val screenOffsetY = 37
       val radius = 30
       val offsetX = (radius * 1.5).toInt
       val perpDist = (radius * 0.87).toInt
