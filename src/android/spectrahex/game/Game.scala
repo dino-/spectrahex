@@ -24,16 +24,22 @@ object Game {
 
 
    val emptyBoard =
-         (for (x <- (0 to 5); y <- (0 to 8))
+         (for (x <- (0 to 5); y <- (0 to 5))
           yield (Cell(Pos(x, y), NoColor))).toList
 
 
    def randomTiles (diff: Difficulty) = {
       val distMapping = diff match {
-         case Easy         => List((45, randomPrimary _))
-         case Intermediate => List((34, randomPrimary _), (11, randomSecondary _))
-         case Difficult    =>
-            List((20, randomPrimary _), (20, randomSecondary _), (5, randomTertiary _))
+         case Easy         => List((36, randomPrimary _))
+         case Intermediate => List(
+            (27, randomPrimary _),
+            (9, randomSecondary _)
+         )
+         case Difficult    => List(
+            (16, randomPrimary _),
+            (16, randomSecondary _),
+            (4, randomTertiary _)
+         )
       }
 
       Random.shuffle (distMapping flatMap { case (n, f) => List.fill (n) (f.apply) })

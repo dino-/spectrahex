@@ -1,5 +1,28 @@
 Distribution for different difficulty levels:
 
+
+board size: 36
+
+total pri's 36        45       60
+
+primary     36 100%   27 75%   16 43.75%
+
+secondary    X         9 25%   16 43.75%
+
+tertiary     X         X        4 12.5%
+
+difficulty   E        I        D
+
+
+So, this means:
+
+An Easy game will have 36 randomly selected primaries.
+An Intermediate game will have 27 randomly selected primaries and 9 randomly selected secondaries.
+A Difficult game will have 16 randomly selected primaries, 16 randomly selected secondaries and 4 tertiaries (which can only be Gray. But are a bitch to get rid of)
+
+
+board size: 45
+
 total pri's 45        56       75
 
 primary     45 100%   34 75%   20 43.75%
