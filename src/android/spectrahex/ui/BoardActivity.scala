@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.RectF
+import android.graphics.Region
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
@@ -17,14 +19,23 @@ import android.view.Window
 import android.spectrahex.game._
 import android.spectrahex.game.Game._
 import android.spectrahex.game.color.{Color => SymColor, _}
+import android.spectrahex.Util._
+
+
+case class DisplayHex (
+   pos: Pos,
+   displayPath: Path,
+   touchRegion: Region
+   )
 
 
 class GameView private (context: Context, game: Game)
    extends View(context) {
 
-   private var hexPaths: List[((Int, Int), Path)] = List()
+   private var displayHexes: List[DisplayHex] = List()
    private var fillPaint = new Paint
    private var strokePaint = new Paint
+   private var selectionPaint = new Paint
 
    private val colorDustyBlue = 0xFF097286
 
@@ -46,9 +57,14 @@ class GameView private (context: Context, game: Game)
       fillPaint.setAntiAlias (true)
 
       strokePaint.setStyle(Paint.Style.STROKE)
-      strokePaint.setStrokeWidth (3)
+      strokePaint.setStrokeWidth (2)
       strokePaint.setColor (Color.GRAY)
       strokePaint.setAntiAlias (true)
+
+      selectionPaint.setStyle(Paint.Style.STROKE)
+      selectionPaint.setStrokeWidth (3)
+      selectionPaint.setColor (Color.WHITE)
+      selectionPaint.setAntiAlias (true)
 
 
       // Construct the hex geometry for drawing the entire board
@@ -64,7 +80,7 @@ class GameView private (context: Context, game: Game)
 
       val startingPath = hex (radius)
 
-      hexPaths =
+      displayHexes =
          (for (x <- (0 to 5); y <- (0 to 5))
          yield {
             val yOddOffset = if (isEven (x)) 0 else perpDist
@@ -76,12 +92,16 @@ class GameView private (context: Context, game: Game)
                (y * offsetY) + screenOffsetY + yOddOffset
             )
 
-            ((x, y), p)
+            DisplayHex (Pos(x, y), p, getRegion(p))
          }).toList
    }
 
 
-   def isEven (n: Int): Boolean = n % 2 == 0
+   def getRegion (path: Path): Region = {
+      var rf = new RectF
+      path.computeBounds(rf, false)
+      new Region(rf.left.toInt, rf.top.toInt, rf.right.toInt, rf.bottom.toInt)
+   }
 
 
    def unitHex: Path = {
@@ -126,9 +146,15 @@ class GameView private (context: Context, game: Game)
       }
 
 
+   def hexAt (p: Pos): DisplayHex = displayHexes.filter
+      { (h) => (h.pos.x == p.x) && (h.pos.y == p.y) }.head
+
+
    override def onDraw (canvas: Canvas) = {
-      hexPaths.foreach {
-         case ((x, y), path) => {
+      // Paint all hexes
+
+      displayHexes.foreach {
+         case DisplayHex(cpos@Pos(x, y), path, _) => {
             val sc = colorAt (game.board) (Pos(x, y))
             fillPaint.setColor(colorMap(sc))
 
@@ -137,7 +163,28 @@ class GameView private (context: Context, game: Game)
          }
       }
 
+      // Paint the selection
+
+      game.selection match {
+         case Some(pos) => {
+            val h = hexAt (pos)
+            canvas.drawPath (h.displayPath, selectionPaint)
+         }
+         case _ => ()
+      }
+
       invalidate()
+   }
+
+
+   def touchedHex (x: Int, y: Int): Pos = {
+      val hs = displayHexes.map {
+         case DisplayHex(pos, _, region) => {
+            if (region.contains(x, y)) Some(pos)
+            else None
+         }
+      }
+      catOptions(hs).head
    }
 
 
@@ -150,6 +197,11 @@ class GameView private (context: Context, game: Game)
             val msg = "x: " ++ x.toString ++ "  y: " ++ y.toString
 
             Log.d (logTag, msg)
+
+            val p = touchedHex(x.toInt, y.toInt)
+            Log.d (logTag, p.toString)
+
+            game.selection = Some(p)
 
             true
          }
