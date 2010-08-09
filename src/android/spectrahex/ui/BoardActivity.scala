@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 //import android.util.Log
 import android.view.View
+import android.view.Window
 
 import android.spectrahex.game._
 import android.spectrahex.game.Game._
@@ -143,6 +144,8 @@ class SpectraHex extends Activity {
 
    override def onCreate (savedInstanceState: Bundle) {
       super.onCreate (savedInstanceState)
+
+      requestWindowFeature (Window.FEATURE_NO_TITLE)
 
       val dm = new DisplayMetrics
       getWindowManager().getDefaultDisplay().getMetrics(dm)
