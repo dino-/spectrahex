@@ -9,7 +9,8 @@ import android.graphics.Paint
 import android.graphics.Path
 import android.os.Bundle
 import android.util.DisplayMetrics
-//import android.util.Log
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 
@@ -26,6 +27,8 @@ class GameView private (context: Context, game: Game)
    private var strokePaint = new Paint
 
    private val colorDustyBlue = 0xFF097286
+
+   private val logTag = "GameView"
 
 
    def this (
@@ -136,6 +139,22 @@ class GameView private (context: Context, game: Game)
 
       invalidate()
    }
+
+
+   override def onTouchEvent(ev: MotionEvent) =
+      ev.getAction() match {
+         case MotionEvent.ACTION_DOWN => true
+         case MotionEvent.ACTION_UP => {
+            val x = ev.getX()
+            val y = ev.getY()
+            val msg = "x: " ++ x.toString ++ "  y: " ++ y.toString
+
+            Log.d (logTag, msg)
+
+            true
+         }
+         case _ => false
+      }
 
 }
 
