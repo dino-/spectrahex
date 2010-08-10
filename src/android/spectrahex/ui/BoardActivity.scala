@@ -180,8 +180,6 @@ class GameView private (context: Context, game: Game)
          }
          case _ => ()
       }
-
-      invalidate()
    }
 
 
@@ -210,6 +208,8 @@ class GameView private (context: Context, game: Game)
             Log.d (logTag, p.toString)
 
             game.selection = Some(p)
+
+            invalidate()
 
             true
          }
