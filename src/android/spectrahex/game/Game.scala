@@ -4,6 +4,7 @@ import scala.util.Random
 
 import android.spectrahex.game.color._
 import android.spectrahex.game.color.Color._
+import android.spectrahex.Util._
 
 
 case class Pos (x: Int, y: Int)
@@ -56,17 +57,35 @@ object Game {
       b.map { case (Cell(_, color)) => totalTiles(color) } sum
 
 
-   val absMoves: List[(Pos, Pos)] = List(
-      (Pos( 1, -1), Pos( 2, -1)),
-      (Pos( 1,  0), Pos( 2,  1)),
-      (Pos( 0,  1), Pos( 0,  2)),
-      (Pos(-1,  0), Pos(-2,  1)),
-      (Pos(-1, -1), Pos(-2, -1)),
-      (Pos( 0, -1), Pos( 0, -2))
-      )
+   /* The list of surrounding points for every possible move, in pairs:
+      (hex to be leapt over, hex to be landed upon)
 
-
-   def transformPos (o: Pos) (p: Pos): Pos = Pos((p.x + o.x), (p.y + o.y))
+      This is just the raw, ideal list. These points will often be off
+      the board or otherwise be a problem.
+   */
+   def allMoves (o: Pos): List[(Pos, Pos)] =
+      o match {
+         case (Pos(x, y)) if (isEven(x)) => {
+            List(
+               (Pos(x + 1, y - 1), Pos(x + 2, y - 1)),
+               (Pos(x + 1, y    ), Pos(x + 2, y + 1)),
+               (Pos(x    , y + 1), Pos(x    , y + 2)),
+               (Pos(x - 1, y    ), Pos(x - 2, y + 1)),
+               (Pos(x - 1, y - 1), Pos(x - 2, y - 1)),
+               (Pos(x    , y - 1), Pos(x    , y - 2))
+            )
+         }
+         case (Pos(x, y)) => {
+            List(
+               (Pos(x + 1, y    ), Pos(x + 2, y - 1)),
+               (Pos(x + 1, y + 1), Pos(x + 2, y + 1)),
+               (Pos(x    , y + 1), Pos(x    , y + 2)),
+               (Pos(x - 1, y + 1), Pos(x - 2, y + 1)),
+               (Pos(x - 1, y    ), Pos(x - 2, y - 1)),
+               (Pos(x    , y - 1), Pos(x    , y - 2))
+            )
+         }
+   }
 
 
    def withinBoard (b: Board) (p: Pos): Boolean =
@@ -76,14 +95,8 @@ object Game {
 // Can still move is: legalMoves > 0
 
 
-   def transformPair (p: Pos) (pair: (Pos, Pos)) =
-      pair match {
-         case (p1, p2) => ((transformPos (p) (p1)), (transformPos (p) (p2)))
-      }
-
-
    def legalMoves (b: Board) (selection: Pos): List[(Pos, Pos)] = {
-      absMoves.map(transformPair (selection) _) filter { 
+      allMoves (selection) filter { 
          case (_, d) => withinBoard (b) (d)
       } filter { 
          case (p1, p2) => (assessMove
