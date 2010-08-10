@@ -169,6 +169,14 @@ class GameView private (context: Context, game: Game)
          case Some(pos) => {
             val h = hexAt (pos)
             canvas.drawPath (h.displayPath, selectionPaint)
+
+            val moves = Game.legalMoves (game.board) (pos)
+            moves.foreach {
+               case (_, movePos) => {
+                  val h = hexAt (movePos)
+                  canvas.drawPath (h.displayPath, selectionPaint)
+               }
+            }
          }
          case _ => ()
       }
