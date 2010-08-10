@@ -82,7 +82,7 @@ object Game {
       }
 
 
-   def legalMoves (b: Board) (selection: Pos) = {
+   def legalMoves (b: Board) (selection: Pos): List[(Pos, Pos)] = {
       absMoves.map(transformPair (selection) _) filter { 
          case (_, d) => withinBoard (b) (d)
       } filter { 
