@@ -101,7 +101,7 @@ object Color {
          case (Yellow, Blue)   => Some(NoColor)
          case (Yellow, Orange) => Some(Red)
          case (Yellow, Green)  => Some(Blue)
-         case (Yellow, Gray)   => Some(Green)
+         case (Yellow, Gray)   => Some(Violet)
          case (Orange, Orange) => Some(NoColor)
          case (Orange, Gray)   => Some(Blue)
          case (Green,  Green)  => Some(NoColor)
