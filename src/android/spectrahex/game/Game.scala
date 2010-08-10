@@ -125,4 +125,43 @@ object Game {
    def mkGame (difficulty: Difficulty): Game =
       new Game(randomBoard(difficulty), None)
 
+
+   def updateBoard (board: Board) (start: Pos) (end: Pos): Board = {
+      // Get legal moves for the start pos
+      val lms = legalMoves (board) (start)
+
+      // Make sure end pos is one of those
+      val move = lms.filter { case (_, a) => a == end }
+
+      // Gather up the new three CellS
+      val optCells = move match {
+         case List((s, a)) => {
+            val resultColors = (assessMove
+               (colorAt (board) (start))
+               (colorAt (board) (s))
+               (colorAt (board) (a))).get
+
+            Some((
+               Cell(start, NoColor),
+               Cell(s, resultColors._1),
+               Cell(a, resultColors._2)
+            ))
+         }
+         case _ => None
+      }
+
+      // Map over the board CellS, substituting those three new CellS
+      optCells match {
+         case Some((co, cs, ca)) => {
+            board.map { (bc) =>
+               if (bc.pos == co.pos) co
+               else if (bc.pos == cs.pos) cs
+               else if (bc.pos == ca.pos) ca
+               else bc
+            }
+         }
+         case _ => board
+      }
+   }
+
 }

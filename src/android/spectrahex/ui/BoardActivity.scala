@@ -151,6 +151,8 @@ class GameView private (context: Context, game: Game)
 
 
    override def onDraw (canvas: Canvas) = {
+      //Log.d(logTag, "onDraw running now")
+
       // Paint all hexes
 
       displayHexes.foreach {
@@ -194,20 +196,30 @@ class GameView private (context: Context, game: Game)
    }
 
 
+   def adjustState (touched: Pos) = {
+      game.selection match {
+         case None => game.selection = Some(touched)
+         case Some(existingSelection) if (existingSelection == touched) =>
+            game.selection = None
+         case Some(existingSelection) => {
+            game.board =
+               Game.updateBoard (game.board) (existingSelection) (touched)
+            game.selection = None
+         }
+      }
+   }
+
+
    override def onTouchEvent(ev: MotionEvent) =
       ev.getAction() match {
          case MotionEvent.ACTION_DOWN => true
          case MotionEvent.ACTION_UP => {
             val x = ev.getX()
             val y = ev.getY()
-            val msg = "x: " ++ x.toString ++ "  y: " ++ y.toString
-
-            Log.d (logTag, msg)
 
             val p = touchedHex(x.toInt, y.toInt)
-            Log.d (logTag, p.toString)
-
-            game.selection = Some(p)
+            //Log.d(logTag, "handled event, pos touched: " ++ p.toString)
+            adjustState(p)
 
             invalidate()
 
