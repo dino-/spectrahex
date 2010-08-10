@@ -126,7 +126,7 @@ object Game {
       new Game(randomBoard(difficulty), None)
 
 
-   def updateBoard (board: Board) (start: Pos) (end: Pos): Board = {
+   def updateBoard (board: Board, start: Pos, end: Pos): Option[Board] = {
       // Get legal moves for the start pos
       val lms = legalMoves (board) (start)
 
@@ -153,14 +153,14 @@ object Game {
       // Map over the board CellS, substituting those three new CellS
       optCells match {
          case Some((co, cs, ca)) => {
-            board.map { (bc) =>
+            Some(board.map { (bc) =>
                if (bc.pos == co.pos) co
                else if (bc.pos == cs.pos) cs
                else if (bc.pos == ca.pos) ca
                else bc
-            }
+            })
          }
-         case _ => board
+         case _ => None
       }
    }
 

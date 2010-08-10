@@ -202,9 +202,14 @@ class GameView private (context: Context, game: Game)
          case Some(existingSelection) if (existingSelection == touched) =>
             game.selection = None
          case Some(existingSelection) => {
-            game.board =
-               Game.updateBoard (game.board) (existingSelection) (touched)
-            game.selection = None
+            Game.updateBoard (game.board, existingSelection,
+               touched) match {
+               case Some(newBoard) => {
+                  game.board = newBoard
+                  game.selection = None
+               }
+               case _ => ()
+            }
          }
       }
    }
