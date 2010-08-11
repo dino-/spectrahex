@@ -1,8 +1,19 @@
-- Device permissions, it can make phone calls? Why? Get rid of that
+- application icon
 
-- Change selection from white outline to a filled circle
+- crash with tapping outside of any hex
+
+- device permissions, it can make phone calls? Why? Get rid of that
+
+- change selection from white outline to a filled circle
 
 - undo/redo stacks
+   This changes how the board is stored, I'm guessing. Two possibilities were discussed with B:
+
+   - Store the initial board state plus list of all moves. The board view applies all moved to the pristine board up to the head of the redo stack.
+
+   - Store the current state of the board plus a list of pairs of states of 3 hexes like this:
+      ((beforeOrigin, beforeSubtract, beforeAdd),
+       (afterOrigin, afterSubtract, afterAdd))
 
 - dashboard
 
