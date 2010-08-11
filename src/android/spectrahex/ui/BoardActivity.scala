@@ -198,7 +198,7 @@ class GameView private (context: Context, game: Game)
 
    def adjustState (touched: Pos): Boolean = {
       game.selection match {
-         case None => {
+         case None if (colorAt (game.board) (touched) != NoColor) => {
             game.selection = Some(touched)
             true
          }
@@ -217,6 +217,7 @@ class GameView private (context: Context, game: Game)
                case _ => false
             }
          }
+         case _ => false
       }
    }
 
