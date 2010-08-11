@@ -47,9 +47,6 @@ object Color {
    // A randomly chosen Violet, Green or Orange
    def randomSecondary: Color = colFromNumber(Random.nextInt(3) + 4)
 
-   // Just a Gray, randomly chosen if you want to think of it that way. :D
-   def randomTertiary: Color = Gray
-
 
    def add (c1: Color) (c2: Color): Option[Color] =
       (c1, c2) match {

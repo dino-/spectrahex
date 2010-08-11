@@ -33,19 +33,33 @@ object Game {
 
    def randomTiles (diff: Difficulty) = {
       val distMapping = diff match {
-         case Easy         => List((36, randomPrimary _))
+         case Easy         => List(
+            (12, Red),
+            (12, Blue),
+            (12, Yellow)
+         )
          case Intermediate => List(
-            (27, randomPrimary _),
-            (9, randomSecondary _)
+            (9, Red),
+            (9, Blue),
+            (9, Yellow),
+            (3, Violet),
+            (3, Green),
+            (3, Orange)
          )
          case Difficult    => List(
-            (16, randomPrimary _),
-            (16, randomSecondary _),
-            (4, randomTertiary _)
+            (5, Red),
+            (5, Blue),
+            (5, Yellow),
+            (1, randomPrimary),
+            (5, Violet),
+            (5, Green),
+            (5, Orange),
+            (1, randomSecondary),
+            (4, Gray)
          )
       }
 
-      Random.shuffle (distMapping flatMap { case (n, f) => List.fill (n) (f.apply) })
+      Random.shuffle (distMapping flatMap { case (n, c) => List.fill (n) (c) })
    }
 
 
