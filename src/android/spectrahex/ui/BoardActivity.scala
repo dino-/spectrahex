@@ -46,7 +46,7 @@ class GameView private (context: Context, game: Game)
       context: Context,
       game: Game,
       screenWidth: Int,
-      screenHeight: Int) = {
+      screenHeight: Int ) = {
 
       this (context, game)
 
