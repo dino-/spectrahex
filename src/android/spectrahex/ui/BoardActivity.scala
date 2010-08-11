@@ -185,30 +185,36 @@ class GameView private (context: Context, game: Game)
    }
 
 
-   def touchedHex (x: Int, y: Int): Pos = {
+   def touchedHex (x: Int, y: Int): Option[Pos] = {
       val hs = displayHexes.map {
          case DisplayHex(pos, _, region) => {
             if (region.contains(x, y)) Some(pos)
             else None
          }
       }
-      catOptions(hs).head
+      catOptions(hs).headOption
    }
 
 
-   def adjustState (touched: Pos) = {
+   def adjustState (touched: Pos): Boolean = {
       game.selection match {
-         case None => game.selection = Some(touched)
-         case Some(existingSelection) if (existingSelection == touched) =>
+         case None => {
+            game.selection = Some(touched)
+            true
+         }
+         case Some(existingSelection) if (existingSelection == touched) => {
             game.selection = None
+            true
+         }
          case Some(existingSelection) => {
             Game.updateBoard (game.board, existingSelection,
                touched) match {
                case Some(newBoard) => {
                   game.board = newBoard
                   game.selection = None
+                  true
                }
-               case _ => ()
+               case _ => false
             }
          }
       }
@@ -222,13 +228,14 @@ class GameView private (context: Context, game: Game)
             val x = ev.getX()
             val y = ev.getY()
 
-            val p = touchedHex(x.toInt, y.toInt)
-            //Log.d(logTag, "handled event, pos touched: " ++ p.toString)
-            adjustState(p)
-
-            invalidate()
-
-            true
+            touchedHex(x.toInt, y.toInt) match {
+               case Some(p) => {
+                  val repaint = adjustState(p)
+                  if (repaint) invalidate()
+                  true
+               }
+               case None => false
+            }
          }
          case _ => false
       }
