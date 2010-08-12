@@ -1,8 +1,8 @@
-- application icon
+- menu
+   - start new game, set difficulty
+   - exit
 
-- device permissions, it can make phone calls? Why? Get rid of that
-
-- change selection from white outline to a filled circle
+- game state persistence
 
 - undo/redo stacks
    This changes how the board is stored, I'm guessing. Two possibilities were discussed with B:
@@ -14,6 +14,14 @@
        (afterOrigin, afterSubtract, afterAdd))
 
 - dashboard
+
+- About dialog
+
+- application icon
+
+- device permissions, it can make phone calls? Why? Get rid of that
+
+- change selection from white outline to a filled circle
 
 - repackage to remove "android."
 
