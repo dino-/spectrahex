@@ -293,7 +293,8 @@ class SpectraHex extends Activity {
             true
          }
          case R.id.quit => {
-            Log.d(logTag, "quit")
+            // Confirm this?
+            finish()
             true
          }
          case _ => super.onOptionsItemSelected(item)
