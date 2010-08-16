@@ -1,4 +1,21 @@
 -----
+Menu layouts
+
+SpectraHex activity:
+
+   + New game (ic_menu_compose.png)
+      - Easy
+      - Intermediate
+      - Difficult
+   + More (ic_menu_more.png)
+      - High scores
+      - About
+      * Quit
+   - Help (ic_menu_help.png)
+   - Undo all moves (ic_menu_revert.png)
+
+
+-----
 Distribution for different difficulty levels:
 
 
