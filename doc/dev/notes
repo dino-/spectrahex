@@ -1,8 +1,31 @@
 -----
 Running the emulator:
 
-$ emulator -avd 1.6_128m_hvga &
-$ adb logcat
+   $ emulator -avd 1.6_128m_hvga &
+   $ adb logcat
+
+
+-----
+Installing on the device or emulator specifically:
+
+   $ ant install -Dadb.device.arg=-d
+   $ ant install -Dadb.device.arg=-e
+
+
+-----
+Permissions problem with connected device:
+
+If you are having perms problems installing on a phone, and see this:
+
+   $ adb devices
+
+   ?????????????? No permissions
+
+Do this:
+
+   $ adb kill-server
+   # adb start-server   (<-- notice AS ROOT!)
+   $ adb devices   (<-- should look good now)
 
 
 -----
