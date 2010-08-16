@@ -1,4 +1,11 @@
 -----
+Running the emulator:
+
+$ emulator -avd 1.6_128m_hvga &
+$ adb logcat
+
+
+-----
 version numbering:
 
 Version info is kept in AndroidManifest.xml
