@@ -1,8 +1,10 @@
-- menu
-   - start new game, set difficulty
-   - exit
-
 - game state persistence
+
+- About dialog
+
+- orange color not bright enough
+
+- menu
 
 - undo/redo stacks
    This changes how the board is stored, I'm guessing. Two possibilities were discussed with B:
@@ -14,8 +16,6 @@
        (afterOrigin, afterSubtract, afterAdd))
 
 - dashboard
-
-- About dialog
 
 - application icon
 
