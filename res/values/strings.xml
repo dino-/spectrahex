@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SpectraHex</string>
+   <string name="app_name">SpectraHex</string>
+
+   <!-- menu string resources -->
+   <string name="new_game">New game</string>
+   <string name="more">More</string>
+   <string name="quit">Quit</string>
+   <string name="diff_easy">Easy</string>
+   <string name="diff_intermediate">Intermediate</string>
+   <string name="diff_difficult">Difficult</string>
 </resources>

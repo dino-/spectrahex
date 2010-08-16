@@ -12,6 +12,8 @@ import android.graphics.Region
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.Window
@@ -246,18 +248,55 @@ class GameView private (context: Context, game: Game)
 
 class SpectraHex extends Activity {
 
+   private val logTag = "SpectraHex"
+
+
    override def onCreate (savedInstanceState: Bundle) {
       super.onCreate (savedInstanceState)
 
       requestWindowFeature (Window.FEATURE_NO_TITLE)
 
+      newGame(Easy)
+   }
+
+
+   def newGame (diff: Difficulty) = {
       val dm = new DisplayMetrics
       getWindowManager().getDefaultDisplay().getMetrics(dm)
 
-      val game = Game.mkGame(Intermediate)
+      val game = Game.mkGame(diff)
 
       val view = new GameView (this, game, dm.widthPixels, dm.heightPixels)
       setContentView (view)
    }
+
+
+   override def onCreateOptionsMenu (menu: Menu): Boolean = {
+      val inflater = getMenuInflater()
+      inflater.inflate(R.menu.board_menu, menu)
+      true
+   }
+
+
+   override def onOptionsItemSelected (item: MenuItem): Boolean =
+      item.getItemId() match {
+         case R.id.diff_easy => {
+            newGame(Easy)
+            true
+         }
+         case R.id.diff_intermediate => {
+            newGame(Intermediate)
+            true
+         }
+         case R.id.diff_difficult => {
+            newGame(Difficult)
+            true
+         }
+         case R.id.quit => {
+            Log.d(logTag, "quit")
+            true
+         }
+         case _ => super.onOptionsItemSelected(item)
+      }
 
 }
