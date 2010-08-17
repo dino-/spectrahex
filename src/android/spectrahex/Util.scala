@@ -1,5 +1,9 @@
 package android.spectrahex
 
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+
 
 object Util {
 
@@ -8,5 +12,21 @@ object Util {
 
    def catOptions[A] (l: List[Option[A]]): List[A] =
       l.filter(_.isDefined).map(_.get)
+
+
+   def readInputStreamFully (is: InputStream): String = {
+      val br = new BufferedReader(new InputStreamReader(is))
+      val sb = new StringBuffer()
+      var s = ""
+      do {
+         s = br.readLine()
+         if (s != null) {
+            sb.append(s)
+            sb.append("\n")
+         }
+      } while (s != null)
+
+      sb.toString()
+   }
 
 }
