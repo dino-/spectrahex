@@ -90,6 +90,14 @@ Do this:
 
 
 -----
+package manager and version info at runtime:
+
+   val pm = getPackageManager()
+   val pi = pm.getPackageInfo(getPackageName(), 0)
+   Log.d(logTag, pi.versionName)
+
+
+-----
 version numbering:
 
 Version info is kept in AndroidManifest.xml
