@@ -17,16 +17,8 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.Window
-import java.io.BufferedReader
 import java.io.FileNotFoundException
-//import java.io.DataInputStream
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
-import java.io.PrintWriter
-import java.io.StringWriter
-import javax.xml.parsers.SAXParserFactory
-import scala.io.Source
-import scala.xml.XML
+import java.util.Properties
 
 import android.spectrahex.game._
 import android.spectrahex.game.Game._
@@ -260,10 +252,9 @@ class SpectraHex extends Activity {
 
    private val logTag = "SpectraHex"
 
-   //private var game = Game.mkGame(Easy)
    private var game: Game = null
 
-   private val gameStateFile = "game-state"
+   private val gameStateFile = "game.properties"
 
 
    override def onCreate (savedInstanceState: Bundle) {
@@ -271,7 +262,6 @@ class SpectraHex extends Activity {
 
       requestWindowFeature (Window.FEATURE_NO_TITLE)
 
-      //newGame(Easy)
       loadState match {
          case Some(g) => newGame(g)
          case None => newGame(Game.mkGame(Easy))
@@ -279,134 +269,35 @@ class SpectraHex extends Activity {
    }
 
 
-/*
    def loadState: Option[Game] = {
       try {
          val fis = openFileInput(gameStateFile)
-         val src = Source.fromInputStream(fis)
-         val xmlString = src.mkString
-         fis.close()
-
-         val xmlNodes = XML.loadString(xmlString)
-
-         game = Game.fromXML(xmlNodes)
-
-         Some(game)
-      }
-      catch {
-         case ex: FileNotFoundException => None
-      }
-   }
-   def loadState: Option[Game] = {
-      try {
-         val fis = openFileInput(gameStateFile)
-         val factory = SAXParserFactory.newInstance()
-         //factory.setNamespaceAware(false)
-         //factory.setFeature("http://xml.org/sax/features/namespaces", false)
-         //factory.setFeature("http://xml.org/sax/features/namespace-prefixes", false)
-         val parser = XML.withSAXParser(factory.newSAXParser())
-         //val xmlNodes = XML.load(new InputStreamReader(fis))
-         val xmlNodes = parser.load(new InputStreamReader(fis))
-         fis.close()
-
-         Log.d(logTag, xmlNodes.toString)
-
-         val g = Game.fromXML(xmlNodes)
-
+         val props = new Properties()
+         props.load(fis)
+         val g = Game.fromProperties(props)
          Some(g)
       }
       catch {
          case ex: FileNotFoundException => None
-         //case ex: SAXNotSupportedException => None
       }
-   }
-*/
-/*
-   def loadState: Option[Game] = {
-      try {
-         val fis = openFileInput(gameStateFile)
-         val br = new BufferedReader(new InputStreamReader(fis))
-         var msg = ""
-         var s = ""
-         do {
-            s = br.readLine()
-            if(s == null) msg = "NULL!"
-            else msg = s
-            Log.d(logTag, msg)
-         } while (s != null)
-         fis.close()
-
-         None
-      }
-      catch {
-         case ex: FileNotFoundException => None
-      }
-   }
-   def loadState: Option[Game] = {
-      try {
-         val sb = new StringBuffer()
-         val fis = openFileInput(gameStateFile)
-         val br = new BufferedReader(new InputStreamReader(fis))
-         var msg = ""
-         var s = ""
-         do {
-            s = br.readLine()
-            if (s != null) sb.append(s)
-            if(s == null) msg = "NULL!"
-            else msg = s
-            Log.d(logTag, msg)
-         } while (s != null)
-         fis.close()
-
-         Log.d(logTag, sb.toString())
-         val factory = SAXParserFactory.newInstance()
-         val parser = XML.withSAXParser(factory.newSAXParser())
-         val xmlNodes = parser.loadString(sb.toString())
-         Log.d(logTag, xmlNodes.toString)
-         
-         //val g = Game.fromXML(xmlNodes)
-         //Some(g)
-         None
-      }
-      catch {
-         case ex: FileNotFoundException => None
-      }
-   }
-*/
-   def loadState: Option[Game] = {
-      //val s = "<foo><bar>baz</bar></foo>"
-      val s = "<foo xmlns:n=\"http://blah/blah\"><n:bar>baz</n:bar></foo>"
-      Log.d(logTag, s)
-      val factory = SAXParserFactory.newInstance()
-      factory.setFeature("http://xml.org/sax/features/namespaces", true)
-      //factory.setFeature("http://xml.org/sax/features/namespace-prefixes", true)
-      val parser = XML.withSAXParser(factory.newSAXParser())
-      val xmlNodes = parser.loadString(s)
-      Log.d(logTag, xmlNodes.toString)
-      None
    }
 
 
    override def onPause () {
       super.onPause()
 
-      Log.d(logTag, "onPause called")
-
       val fos = openFileOutput(gameStateFile, Context.MODE_PRIVATE)
-      val osw = new OutputStreamWriter(fos)
-      XML.write(osw, Game.toXML(game), "UTF-8", true, null)
-      osw.flush()
+      Game.toProperties(game).store(fos,
+         "SpectraHex in-progress game state")
+      fos.flush()
       fos.close()
    }
 
 
-   //def newGame (diff: Difficulty) = {
    def newGame (g: Game) = {
       val dm = new DisplayMetrics
       getWindowManager().getDefaultDisplay().getMetrics(dm)
 
-      //val game = Game.mkGame(diff)
-      //game = Game.mkGame(diff)
       game = g
 
       val view = new GameView (this, game, dm.widthPixels, dm.heightPixels)

@@ -1,7 +1,6 @@
 package android.spectrahex.game.color
 
 import scala.util.Random
-import scala.xml.Node
 
 
 sealed abstract class Color
@@ -16,11 +15,8 @@ case object Gray    extends Color
 
 object Color {
 
-   def toXML (color: Color) = <Color>{color}</Color>
-
-
-   def fromXML (node: Node): Color =
-      node.text match {
+   def fromProperty (s: String): Color =
+      s match {
          case "NoColor" => NoColor
          case "Red" => Red
          case "Blue" => Blue

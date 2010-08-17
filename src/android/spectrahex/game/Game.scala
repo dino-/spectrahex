@@ -1,7 +1,7 @@
 package android.spectrahex.game
 
+import java.util.Properties
 import scala.util.Random
-import scala.xml.Node
 
 import android.spectrahex.game.color._
 import android.spectrahex.game.color.Color._
@@ -12,14 +12,12 @@ case class Pos (x: Int, y: Int)
 
 object Pos {
 
-   def toXML (pos: Pos) =
-      <Pos><x>{pos.x}</x><y>{pos.y}</y></Pos>
+   def fromProperty (s: String): Pos = {
+      val regex = "Pos\\((\\d+),(\\d+)\\)".r
 
-
-   def fromXML (node: Node): Pos = {
-      val x = (node \ "x").text.toInt
-      val y = (node \ "y").text.toInt
-      Pos(x, y)
+      s match {
+         case regex(x, y) => Pos(x.toInt, y.toInt)
+      }
    }
 
 }
@@ -29,15 +27,15 @@ case class Cell (pos: Pos, color: Color)
 
 object Cell {
 
-   def toXML (cell: Cell) =
-      <Cell>{Pos.toXML(cell.pos)}{Color.toXML(cell.color)}</Cell>
+   def fromProperty (s: String): Cell = {
+      val regex = "Cell\\((Pos\\(.*\\)),(\\w+)\\)".r
 
-
-   def fromXML (node: Node): Cell = {
-      val pos = Pos.fromXML((node \ "Pos").head)
-      val color = Color.fromXML((node \ "Color").head)
-      Cell(pos, color)
+      s match {
+         case regex(ps, cs) =>
+            Cell(Pos.fromProperty(ps), Color.fromProperty(cs))
+      }
    }
+
 }
 
 
@@ -59,26 +57,31 @@ object Game {
           yield (Cell(Pos(x, y), NoColor))).toList
 
 
-   def toXML (game: Game) =
-      <Game>
-         <Board>
-            {game.board.map(Cell.toXML(_))}
-         </Board>
-         {game.selection match {
-            case Some(pos) => <Selection>{Pos.toXML(pos)}</Selection>
-            case None => <Selection />
-         }}
-      </Game>
+   def toProperties (game: Game): Properties = {
+      val p = new Properties()
+
+      val cellProp = game.board.map(_.toString).
+         reduceLeft ((b, a) => b ++ "|" ++ a)
+      p.setProperty("boardCurrent", cellProp)
+
+      p.setProperty("selection", game.selection.toString)
+
+      p
+   }
 
 
-   def fromXML (node: Node): Game = {
-      val cells = (node \ "Board" \ "Cell").map(Cell.fromXML(_)).toList
-      val nodeSelection = (node \ "Selection" \ "Pos").headOption
-      val optSelection = nodeSelection match {
-         case Some(n) => Some(Pos.fromXML(n))
-         case None => None
+   def fromProperties (props: Properties): Game = {
+      val cellStrings = props.getProperty("boardCurrent").split('|')
+      val cells = cellStrings.map(Cell.fromProperty).toList
+
+      val selOpString = props.getProperty("selection")
+      val regex = "Some\\((.*)\\)".r
+      val selection = selOpString match {
+         case regex(ps) => Some(Pos.fromProperty(ps))
+         case _ => None
       }
-      new Game(cells, optSelection)
+
+      new Game(cells, selection)
    }
 
 
