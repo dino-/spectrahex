@@ -100,6 +100,11 @@ versionName    versionCode
 2.3.68         2368
 
 
+change the version in these files:
+
+AndroidManifest.xml
+
+
 version numbering scheme
 
 major.minor.status.build
