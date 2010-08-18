@@ -1,6 +1,7 @@
 package android.spectrahex.ui
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -331,7 +332,21 @@ class SpectraHex extends Activity {
             finish()
             true
          }
+         case R.id.about => {
+            showDialog(DIALOG_ABOUT)
+            true
+         }
          case _ => super.onOptionsItemSelected(item)
+      }
+
+
+   // FIXME: Put this in a common place?
+   val DIALOG_ABOUT = 0
+
+   override protected def onCreateDialog (id: Int): Dialog =
+      id match {
+         case DIALOG_ABOUT => AboutDialog.create(this)
+         case _ => null
       }
 
 }
