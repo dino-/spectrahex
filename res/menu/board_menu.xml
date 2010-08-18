@@ -23,8 +23,8 @@
             android:id="@+id/about"
             android:title="@string/about" />
          <item
-            android:id="@+id/quit"
-            android:title="@string/quit" />
+            android:id="@+id/exit"
+            android:title="@string/exit" />
       </menu>
    </item>
 </menu>

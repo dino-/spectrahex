@@ -327,7 +327,7 @@ class SpectraHex extends Activity {
             newGame(Game.mkGame(Difficult))
             true
          }
-         case R.id.quit => {
+         case R.id.exit => {
             // Confirm this?
             finish()
             true
