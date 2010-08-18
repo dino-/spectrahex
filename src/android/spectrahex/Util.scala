@@ -16,7 +16,7 @@ object Util {
 
 
    def readInputStreamFully (is: InputStream): String = {
-      val br = new BufferedReader(new InputStreamReader(is))
+      val br = new BufferedReader(new InputStreamReader(is), 8192)
       val sb = new StringBuffer()
       var s = ""
       do {
