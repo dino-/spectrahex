@@ -1,5 +1,6 @@
 package android.spectrahex
 
+import android.content.Context
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -28,5 +29,17 @@ object Util {
 
       sb.toString()
    }
+
+
+   def versionCode (context: Context): Int =
+      context.getPackageManager()
+      .getPackageInfo(context.getPackageName(), 0)
+      .versionCode
+
+
+   def versionName (context: Context): String =
+      context.getPackageManager()
+      .getPackageInfo(context.getPackageName(), 0)
+      .versionName
 
 }
