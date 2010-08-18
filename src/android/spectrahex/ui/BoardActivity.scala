@@ -288,8 +288,9 @@ class SpectraHex extends Activity {
       super.onPause()
 
       val fos = openFileOutput(gameStateFile, Context.MODE_PRIVATE)
-      Game.toProperties(game).store(fos,
-         "SpectraHex in-progress game state")
+      val props = Game.toProperties(game)
+      props.setProperty("versionCode", versionCode(this).toString)
+      props.store(fos, "SpectraHex in-progress game state")
       fos.flush()
       fos.close()
    }
