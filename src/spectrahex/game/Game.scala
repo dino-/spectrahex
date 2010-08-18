@@ -1,11 +1,11 @@
-package android.spectrahex.game
+package spectrahex.game
 
 import java.util.Properties
 import scala.util.Random
 
-import android.spectrahex.game.color._
-import android.spectrahex.game.color.Color._
-import android.spectrahex.Util._
+import spectrahex.game.color._
+import spectrahex.game.color.Color._
+import spectrahex.Util._
 
 
 case class Pos (x: Int, y: Int)

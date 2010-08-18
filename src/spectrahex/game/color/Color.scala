@@ -1,4 +1,4 @@
-package android.spectrahex.game.color
+package spectrahex.game.color
 
 import scala.util.Random
 

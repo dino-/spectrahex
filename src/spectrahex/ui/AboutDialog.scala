@@ -1,10 +1,10 @@
-package android.spectrahex.ui
+package spectrahex.ui
 
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 
-import android.spectrahex.Util
+import spectrahex.Util
 
 
 object AboutDialog {

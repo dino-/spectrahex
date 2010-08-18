@@ -1,4 +1,4 @@
-package android.spectrahex
+package spectrahex
 
 import android.content.Context
 import java.io.BufferedReader

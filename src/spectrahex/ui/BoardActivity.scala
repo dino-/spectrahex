@@ -1,4 +1,4 @@
-package android.spectrahex.ui
+package spectrahex.ui
 
 import android.app.Activity
 import android.app.Dialog
@@ -21,10 +21,10 @@ import android.view.Window
 import java.io.FileNotFoundException
 import java.util.Properties
 
-import android.spectrahex.game._
-import android.spectrahex.game.Game._
-import android.spectrahex.game.color.{Color => SymColor, _}
-import android.spectrahex.Util._
+import spectrahex.game._
+import spectrahex.game.Game._
+import spectrahex.game.color.{Color => SymColor, _}
+import spectrahex.Util._
 
 
 case class DisplayHex (
