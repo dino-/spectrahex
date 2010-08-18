@@ -287,7 +287,9 @@ class SpectraHex extends Activity {
    override def onPause () {
       super.onPause()
 
-      val fos = openFileOutput(gameStateFile, Context.MODE_PRIVATE)
+      // Using MODE_WORLD_WRITEABLE as a workaround. Quietly get zero
+      // bytes out of the file on actual device with MODE_PRIVATE
+      val fos = openFileOutput(gameStateFile, Context.MODE_WORLD_WRITEABLE)
       val props = Game.toProperties(game)
       props.setProperty("versionCode", versionCode(this).toString)
       props.store(fos, "SpectraHex in-progress game state")
