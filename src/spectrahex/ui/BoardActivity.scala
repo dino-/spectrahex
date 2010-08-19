@@ -182,6 +182,10 @@ class GameView (context: Context, game: Game)
          }
          case _ => ()
       }
+
+      // Output game status to log
+      Log.d(logTag, "game status-  tiles: %02d  moves: %03d"
+         .format(Game.remainingTiles(game.board), game.undo.length))
    }
 
 
