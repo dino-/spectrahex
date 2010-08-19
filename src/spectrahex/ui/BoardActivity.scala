@@ -242,8 +242,6 @@ class GameView private (context: Context, game: Game)
 
 class SpectraHex extends Activity {
 
-   private val logTag = "SpectraHex"
-
    private var game: Game = null
 
    private val gameStateFile = "game.properties"

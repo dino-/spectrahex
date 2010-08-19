@@ -8,6 +8,9 @@ import java.io.InputStreamReader
 
 object Util {
 
+   val logTag = "SpectraHex"
+
+
    def isEven (n: Int): Boolean = n % 2 == 0
 
 
