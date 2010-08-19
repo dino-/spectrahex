@@ -1,5 +1,6 @@
 package spectrahex.game
 
+//import android.util.Log
 import java.util.Properties
 import scala.util.Random
 
