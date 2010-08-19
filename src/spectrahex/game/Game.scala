@@ -54,6 +54,26 @@ case class Move (
    afterAdd: Cell
    )
 
+object Move {
+
+   def fromProperty (s: String): Move = {
+      val regex = "Move\\((Cell.*),(Cell.*),(Cell.*),(Cell.*),(Cell.*),(Cell.*)\\)".r
+
+      s match {
+         case regex(bStS, bSuS, bAdS, aStS, aSuS, aAdS) =>
+            Move (
+               Cell.fromProperty(bStS),
+               Cell.fromProperty(bSuS),
+               Cell.fromProperty(bAdS),
+               Cell.fromProperty(bStS),
+               Cell.fromProperty(bSuS),
+               Cell.fromProperty(bAdS)
+            )
+      }
+   }
+
+}
+
 
 class Game (
    var board: Game.Board,
@@ -109,7 +129,16 @@ object Game {
          case _ => None
       }
 
-      new Game(cells, selection, List(), List())
+      val undoStrings = props.getProperty("undo")
+      val undo = undoStrings match {
+         case "" => List()
+         case s => s.split('|').toList.map(Move.fromProperty)
+      }
+
+      //val redo = Move.fromProperty(props.getProperty("redo"))
+      val redo = List()
+
+      new Game(cells, selection, undo, redo)
    }
 
 
