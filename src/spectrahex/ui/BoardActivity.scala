@@ -19,6 +19,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import java.io.FileNotFoundException
+import java.io.PrintStream
 import java.util.Properties
 
 import spectrahex.game._
@@ -277,14 +278,19 @@ class SpectraHex extends Activity {
    override def onPause () {
       super.onPause()
 
-      // Using MODE_WORLD_WRITEABLE as a workaround. Quietly get zero
-      // bytes out of the file on actual device with MODE_PRIVATE
-      val fos = openFileOutput(gameStateFile, Context.MODE_WORLD_WRITEABLE)
       val props = Game.toProperties(game)
       props.setProperty("versionCode", versionCode(this).toString)
-      props.store(fos, "SpectraHex in-progress game state")
-      fos.flush()
-      fos.close()
+
+      val fos = openFileOutput(gameStateFile, Context.MODE_PRIVATE)
+      val ps = new PrintStream(fos)
+      val en = props.propertyNames()
+      while (en.hasMoreElements()) {
+         val k = en.nextElement().toString
+         ps.println(k + "=" + props.getProperty(k))
+      }
+
+      ps.flush()
+      ps.close()
    }
 
 
