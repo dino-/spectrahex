@@ -45,7 +45,22 @@ case object Intermediate extends Difficulty
 case object Difficult extends Difficulty
 
 
-class Game (var board: Game.Board, var selection: Option[Pos])
+case class Move (
+   beforeStart: Cell,
+   beforeSubtract: Cell,
+   beforeAdd: Cell,
+   afterStart: Cell,
+   afterSubtract: Cell,
+   afterAdd: Cell
+   )
+
+
+class Game (
+   var board: Game.Board,
+   var selection: Option[Pos],
+   var undo: List[Move],
+   var redo: List[Move]
+   )
 
 object Game {
 
@@ -57,21 +72,34 @@ object Game {
           yield (Cell(Pos(x, y), NoColor))).toList
 
 
+   def delimitList[T] (l: List[T]): String =
+      l match {
+         case Nil => ""
+         case _ =>
+            l.map(_.toString).reduceLeft ((b, a) => b ++ "|" ++ a)
+      }
+
+
    def toProperties (game: Game): Properties = {
       val p = new Properties()
 
-      val cellProp = game.board.map(_.toString).
-         reduceLeft ((b, a) => b ++ "|" ++ a)
-      p.setProperty("boardCurrent", cellProp)
+      val cellProp = delimitList(game.board)
+      p.setProperty("board", cellProp)
 
       p.setProperty("selection", game.selection.toString)
+
+      val undoProp = delimitList(game.undo)
+      p.setProperty("undo", undoProp)
+
+      val redoProp = delimitList(game.redo)
+      p.setProperty("redo", redoProp)
 
       p
    }
 
 
    def fromProperties (props: Properties): Game = {
-      val cellStrings = props.getProperty("boardCurrent").split('|')
+      val cellStrings = props.getProperty("board").split('|')
       val cells = cellStrings.map(Cell.fromProperty).toList
 
       val selOpString = props.getProperty("selection")
@@ -81,7 +109,7 @@ object Game {
          case _ => None
       }
 
-      new Game(cells, selection)
+      new Game(cells, selection, List(), List())
    }
 
 
@@ -191,10 +219,13 @@ object Game {
 
 
    def mkGame (difficulty: Difficulty): Game =
-      new Game(randomBoard(difficulty), None)
+      new Game(randomBoard(difficulty), None, List(), List())
 
 
-   def updateBoard (board: Board, start: Pos, end: Pos): Option[Board] = {
+   def doMove (game: Game, end: Pos): Boolean = {
+      val board = game.board
+      val start = game.selection.get
+
       // Get legal moves for the start pos
       val lms = legalMoves (board) (start)
 
@@ -204,12 +235,16 @@ object Game {
       // Gather up the new three CellS
       val optCells = move match {
          case List((s, a)) => {
-            val resultColors = (assessMove
-               (colorAt (board) (start))
-               (colorAt (board) (s))
-               (colorAt (board) (a))).get
+            val startColor = colorAt (board) (start)
+            val subColor = colorAt (board) (s)
+            val addColor = colorAt (board) (a)
+            val resultColors =
+               (assessMove (startColor) (subColor) (addColor)).get
 
-            Some((
+            Some(Move(
+               Cell(start, startColor),
+               Cell(s, subColor),
+               Cell(a, addColor),
                Cell(start, NoColor),
                Cell(s, resultColors._1),
                Cell(a, resultColors._2)
@@ -220,15 +255,20 @@ object Game {
 
       // Map over the board CellS, substituting those three new CellS
       optCells match {
-         case Some((co, cs, ca)) => {
-            Some(board.map { (bc) =>
-               if (bc.pos == co.pos) co
-               else if (bc.pos == cs.pos) cs
-               else if (bc.pos == ca.pos) ca
+         case Some(m) => {
+            val newBoard = board.map { (bc) =>
+               if (bc.pos == m.afterStart.pos) m.afterStart
+               else if (bc.pos == m.afterSubtract.pos) m.afterSubtract
+               else if (bc.pos == m.afterAdd.pos) m.afterAdd
                else bc
-            })
+            }
+
+            game.board = newBoard
+            game.undo ::= m
+            game.selection = None
+            true
          }
-         case _ => None
+         case _ => false
       }
    }
 

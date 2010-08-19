@@ -211,17 +211,7 @@ class GameView private (context: Context, game: Game)
             game.selection = None
             true
          }
-         case Some(existingSelection) => {
-            Game.updateBoard (game.board, existingSelection,
-               touched) match {
-               case Some(newBoard) => {
-                  game.board = newBoard
-                  game.selection = None
-                  true
-               }
-               case _ => false
-            }
-         }
+         case Some(existingSelection) => Game.doMove(game, touched)
          case _ => false
       }
    }
