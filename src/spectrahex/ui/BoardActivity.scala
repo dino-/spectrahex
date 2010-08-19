@@ -11,7 +11,6 @@ import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.Region
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -35,7 +34,7 @@ case class DisplayHex (
    )
 
 
-class GameView private (context: Context, game: Game)
+class GameView (context: Context, game: Game)
    extends View(context) {
 
    private var displayHexes: List[DisplayHex] = List()
@@ -48,30 +47,25 @@ class GameView private (context: Context, game: Game)
    private val logTag = "GameView"
 
 
-   def this (
-      context: Context,
-      game: Game,
-      screenWidth: Int,
-      screenHeight: Int ) = {
+   // Construct the paints we'll need for all drawing
 
-      this (context, game)
+   fillPaint.setStyle(Paint.Style.FILL)
+   fillPaint.setColor (colorDustyBlue)
+   fillPaint.setAntiAlias (true)
 
-      // Construct the paints we'll need for all drawing
+   strokePaint.setStyle(Paint.Style.STROKE)
+   strokePaint.setStrokeWidth (2)
+   strokePaint.setColor (Color.GRAY)
+   strokePaint.setAntiAlias (true)
 
-      fillPaint.setStyle(Paint.Style.FILL)
-      fillPaint.setColor (colorDustyBlue)
-      fillPaint.setAntiAlias (true)
+   selectionPaint.setStyle(Paint.Style.STROKE)
+   selectionPaint.setStrokeWidth (3)
+   selectionPaint.setColor (Color.WHITE)
+   selectionPaint.setAntiAlias (true)
 
-      strokePaint.setStyle(Paint.Style.STROKE)
-      strokePaint.setStrokeWidth (2)
-      strokePaint.setColor (Color.GRAY)
-      strokePaint.setAntiAlias (true)
 
-      selectionPaint.setStyle(Paint.Style.STROKE)
-      selectionPaint.setStrokeWidth (3)
-      selectionPaint.setColor (Color.WHITE)
-      selectionPaint.setAntiAlias (true)
-
+   override def onSizeChanged (w: Int, h: Int, oldw: Int, oldh: Int) = {
+      super.onSizeChanged(w, h, oldw, oldh)
 
       // Construct the hex geometry for drawing the entire board
 
@@ -157,7 +151,7 @@ class GameView private (context: Context, game: Game)
 
 
    override def onDraw (canvas: Canvas) = {
-      //Log.d(logTag, "onDraw running now")
+      //Log.d(logTag, "onDraw called")
 
       // Paint all hexes
 
@@ -293,13 +287,8 @@ class SpectraHex extends Activity {
 
 
    def newGame (g: Game) = {
-      val dm = new DisplayMetrics
-      getWindowManager().getDefaultDisplay().getMetrics(dm)
-
       game = g
-
-      val view = new GameView (this, game, dm.widthPixels, dm.heightPixels)
-      setContentView (view)
+      setContentView (new GameView (this, game))
    }
 
 
