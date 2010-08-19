@@ -135,8 +135,12 @@ object Game {
          case s => s.split('|').toList.map(Move.fromProperty)
       }
 
-      //val redo = Move.fromProperty(props.getProperty("redo"))
-      val redo = List()
+
+      val redoStrings = props.getProperty("redo")
+      val redo = redoStrings match {
+         case "" => List()
+         case s => s.split('|').toList.map(Move.fromProperty)
+      }
 
       new Game(cells, selection, undo, redo)
    }
