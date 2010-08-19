@@ -65,9 +65,9 @@ object Move {
                Cell.fromProperty(bStS),
                Cell.fromProperty(bSuS),
                Cell.fromProperty(bAdS),
-               Cell.fromProperty(bStS),
-               Cell.fromProperty(bSuS),
-               Cell.fromProperty(bAdS)
+               Cell.fromProperty(aStS),
+               Cell.fromProperty(aSuS),
+               Cell.fromProperty(aAdS)
             )
       }
    }
