@@ -60,6 +60,12 @@ A Difficult game will have 20 randomly selected primaries, 20 randomly selected 
 
 
 -----
+A color I liked:
+
+   val colorDustyBlue = 0xFF097286
+
+
+-----
 Running the emulator:
 
    $ emulator -avd 1.6_128m_hvga &
