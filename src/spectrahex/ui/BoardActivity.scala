@@ -11,6 +11,7 @@ import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.Region
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -36,9 +37,10 @@ case class DisplayHex (
    )
 
 
-class GameView (context: Context, game: Game)
-   extends View(context) {
+class GameView (context: Context, attrs: AttributeSet)
+   extends View(context, attrs) {
 
+   var game: Game = null
    private var displayHexes: List[DisplayHex] = List()
    private var hexFillPaint = new Paint
    private var hexBorderPaint = new Paint
@@ -339,7 +341,10 @@ class SpectraHex extends Activity {
 
    def newGame (g: Game) = {
       game = g
-      setContentView (new GameView (this, game))
+
+      setContentView(R.layout.game)
+      val gameView = findViewById(R.id.game_view).asInstanceOf[GameView]
+      gameView.game = game
    }
 
 
