@@ -1,7 +1,5 @@
 - more elaborate About dialog
 
-- orange color not bright enough
-
 - undo/redo stacks
    This changes how the board is stored, I'm guessing. Two possibilities were discussed with B:
 
