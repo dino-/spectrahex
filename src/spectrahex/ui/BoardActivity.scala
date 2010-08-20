@@ -30,6 +30,8 @@ import spectrahex.Util._
 case class DisplayHex (
    pos: Pos,
    displayPath: Path,
+   centerX: Int,
+   centerY: Int,
    touchRegion: Region
    )
 
@@ -40,31 +42,60 @@ class GameView (context: Context, game: Game)
    private var displayHexes: List[DisplayHex] = List()
    private var hexFillPaint = new Paint
    private var hexBorderPaint = new Paint
-   private var selectionPaint = new Paint
-   //private var moveDestPaint = new Paint
-
-   private val colorDustyBlue = 0xFF097286
+   private var selFillPaint = new Paint
+   private var selStrokePaint = new Paint
+   private var moveFillPaint = new Paint
+   private var moveStrokePaint = new Paint
+   private var radius = 0
 
    private val logTag = "GameView"
 
 
    // Set up the paints we'll need for all drawing
-   //List(hexFillPaint, hexBorderPaint, selectionPaint, moveDestPaint)
-   List(hexFillPaint, hexBorderPaint, selectionPaint)
-      .foreach(_.setAntiAlias(true))
+   List(
+      hexFillPaint, hexBorderPaint,
+      selFillPaint, selStrokePaint,
+      moveFillPaint, moveStrokePaint
+      ) .foreach(_.setAntiAlias(true))
 
    hexFillPaint.setStyle(Paint.Style.FILL)
 
    hexBorderPaint.setStyle(Paint.Style.STROKE)
-   hexBorderPaint.setStrokeWidth (2)
+   hexBorderPaint.setStrokeWidth(2)
    hexBorderPaint.setColor(Color.GRAY)
 
-   selectionPaint.setStyle(Paint.Style.STROKE)
-   selectionPaint.setStrokeWidth (3)
-   selectionPaint.setColor(Color.WHITE)
+   List(selFillPaint, selStrokePaint, moveFillPaint, moveStrokePaint)
+      .foreach(_.setStrokeWidth(1))
 
-   //moveDestPaint.setStyle(Paint.Style.FILL)
-   //moveDestPaint.setColor(colorDustyBlue)
+   selFillPaint.setStyle(Paint.Style.FILL)
+   selFillPaint.setColor(Color.WHITE)
+
+   selStrokePaint.setStyle(Paint.Style.STROKE)
+   selStrokePaint.setColor(Color.BLACK)
+
+   moveFillPaint.setStyle(Paint.Style.FILL)
+   moveFillPaint.setColor(Color.BLACK)
+
+   moveStrokePaint.setStyle(Paint.Style.STROKE)
+   moveStrokePaint.setColor(Color.WHITE)
+
+
+   // A group of math functions to compute the size of specific numbers
+   // of hexes given screen width and height measurements
+
+   def calcWidthRadius (numHexes: Int, screenWidth: Int): Double =
+      screenWidth / ((1.5 * numHexes) + 0.5)
+
+   def calcWidthHexMetric (numHexes: Int, radius: Double): Double = {
+      val halfRadius = radius / 2
+      (radius * numHexes) + (halfRadius * numHexes) + halfRadius
+   }
+
+   def calcHeightRadius (numHexes: Int, screenHeight: Int): Double =
+      screenHeight / (1.74 * numHexes)
+
+   def calcHeightHexMetrix (numHexes: Int, radius: Double): Double =
+      1.74 * radius * numHexes
 
 
    override def onSizeChanged (w: Int, h: Int, oldw: Int, oldh: Int) = {
@@ -76,7 +107,7 @@ class GameView (context: Context, game: Game)
          from screen dimensions later */
       val screenOffsetX = 47
       val screenOffsetY = 37
-      val radius = 30
+      radius = 30
       val offsetX = (radius * 1.5).toInt
       val perpDist = (radius * 0.87).toInt
       val offsetY = perpDist * 2
@@ -90,12 +121,12 @@ class GameView (context: Context, game: Game)
 
             val p = new Path(startingPath)
 
-            p.offset (
-               (x * offsetX) + screenOffsetX,
-               (y * offsetY) + screenOffsetY + yOddOffset
-            )
+            val finalOffsetX = (x * offsetX) + screenOffsetX
+            val finalOffsetY = (y * offsetY) + screenOffsetY + yOddOffset
+            p.offset (finalOffsetX, finalOffsetY)
 
-            DisplayHex (Pos(x, y), p, getRegion(p))
+            DisplayHex (Pos(x, y), p,
+               finalOffsetX, finalOffsetY, getRegion(p))
          }).toList
    }
 
@@ -103,7 +134,8 @@ class GameView (context: Context, game: Game)
    def getRegion (path: Path): Region = {
       var rf = new RectF
       path.computeBounds(rf, false)
-      new Region(rf.left.toInt, rf.top.toInt, rf.right.toInt, rf.bottom.toInt)
+      new Region(rf.left.toInt, rf.top.toInt,
+         rf.right.toInt, rf.bottom.toInt)
    }
 
 
@@ -159,7 +191,7 @@ class GameView (context: Context, game: Game)
       // Paint all hexes
 
       displayHexes.foreach {
-         case DisplayHex(cpos@Pos(x, y), path, _) => {
+         case DisplayHex(cpos@Pos(x, y), path, _, _, _) => {
             val sc = colorAt (game.board) (Pos(x, y))
             hexFillPaint.setColor(colorMap(sc))
 
@@ -169,17 +201,24 @@ class GameView (context: Context, game: Game)
       }
 
       // Paint the selection
+      val selRadius = radius / 2
 
       game.selection match {
          case Some(pos) => {
             val h = hexAt (pos)
-            canvas.drawPath (h.displayPath, selectionPaint)
+            canvas.drawCircle(h.centerX, h.centerY,
+               selRadius, selFillPaint)
+            canvas.drawCircle(h.centerX, h.centerY,
+               selRadius, selStrokePaint)
 
             val moves = Game.legalMoves (game.board) (pos)
             moves.foreach {
                case (_, movePos) => {
                   val h = hexAt (movePos)
-                  canvas.drawPath (h.displayPath, selectionPaint)
+                  canvas.drawCircle(h.centerX, h.centerY,
+                     selRadius, moveFillPaint)
+                  canvas.drawCircle(h.centerX, h.centerY,
+                     selRadius, moveStrokePaint)
                }
             }
          }
@@ -194,7 +233,7 @@ class GameView (context: Context, game: Game)
 
    def touchedHex (x: Int, y: Int): Option[Pos] = {
       val hs = displayHexes.map {
-         case DisplayHex(pos, _, region) => {
+         case DisplayHex(pos, _, _, _, region) => {
             if (region.contains(x, y)) Some(pos)
             else None
          }
