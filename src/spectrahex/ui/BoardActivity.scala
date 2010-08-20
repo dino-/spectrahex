@@ -94,7 +94,7 @@ class GameView (context: Context, game: Game)
    def calcHeightRadius (numHexes: Int, screenHeight: Int): Double =
       screenHeight / (1.74 * numHexes)
 
-   def calcHeightHexMetrix (numHexes: Int, radius: Double): Double =
+   def calcHeightHexMetric (numHexes: Int, radius: Double): Double =
       1.74 * radius * numHexes
 
 
@@ -103,11 +103,16 @@ class GameView (context: Context, game: Game)
 
       // Construct the hex geometry for drawing the entire board
 
-      /* Will want to calculate radius, horiz and vertical offsets
-         from screen dimensions later */
-      val screenOffsetX = 47
-      val screenOffsetY = 37
-      radius = 30
+      radius = List(calcWidthRadius(6, w), calcHeightRadius(6, h))
+         .min.toInt
+
+      // Values for positioning the board as a whole
+      val boardOffsetX = ((w - (calcWidthHexMetric(6, radius))) / 2)
+         .toInt + radius
+      val boardOffsetY = (((h - (calcHeightHexMetric(6, radius))) / 2)
+         + (radius * 0.5)).toInt
+
+      // Values for positioning individual hexes
       val offsetX = (radius * 1.5).toInt
       val perpDist = (radius * 0.87).toInt
       val offsetY = perpDist * 2
@@ -121,8 +126,8 @@ class GameView (context: Context, game: Game)
 
             val p = new Path(startingPath)
 
-            val finalOffsetX = (x * offsetX) + screenOffsetX
-            val finalOffsetY = (y * offsetY) + screenOffsetY + yOddOffset
+            val finalOffsetX = (x * offsetX) + boardOffsetX
+            val finalOffsetY = (y * offsetY) + boardOffsetY + yOddOffset
             p.offset (finalOffsetX, finalOffsetY)
 
             DisplayHex (Pos(x, y), p,
