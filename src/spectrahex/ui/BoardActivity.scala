@@ -235,9 +235,9 @@ class GameView (context: Context, attrs: AttributeSet)
       }
 
       // Display game status on the dashboard
-      dashTiles.setText("tiles: %02d"
+      dashTiles.setText("%02d tiles"
          .format(Game.remainingTiles(game.board)))
-      dashMoves.setText("moves: %03d".format(game.undo.length))
+      dashMoves.setText("moves %02d".format(game.undo.length))
    }
 
 
