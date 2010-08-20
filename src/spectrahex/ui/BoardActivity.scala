@@ -48,8 +48,6 @@ class GameView (context: Context, game: Game)
    private var moveStrokePaint = new Paint
    private var radius = 0
 
-   private val logTag = "GameView"
-
 
    // Set up the paints we'll need for all drawing
    List(
