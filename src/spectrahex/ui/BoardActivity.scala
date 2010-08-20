@@ -309,7 +309,7 @@ class SpectraHex extends Activity {
          props.load(fis)
          //Log.d(logTag, props.toString)
          val g = Game.fromProperties(props)
-         Log.d(logTag, g.undo.toString)
+         //Log.d(logTag, g.undo.toString)
          Some(g)
       }
       catch {
