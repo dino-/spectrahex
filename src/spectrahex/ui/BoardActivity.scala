@@ -18,6 +18,7 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.Window
+import android.widget.TextView
 import java.io.FileNotFoundException
 import java.io.PrintStream
 import java.util.Properties
@@ -41,6 +42,9 @@ class GameView (context: Context, attrs: AttributeSet)
    extends View(context, attrs) {
 
    var game: Game = null
+   var dashTiles: TextView = null
+   var dashMoves: TextView = null
+
    private var displayHexes: List[DisplayHex] = List()
    private var hexFillPaint = new Paint
    private var hexBorderPaint = new Paint
@@ -194,7 +198,6 @@ class GameView (context: Context, attrs: AttributeSet)
       //Log.d(logTag, "onDraw called")
 
       // Paint all hexes
-
       displayHexes.foreach {
          case DisplayHex(cpos@Pos(x, y), path, _, _, _) => {
             val sc = colorAt (game.board) (Pos(x, y))
@@ -230,9 +233,10 @@ class GameView (context: Context, attrs: AttributeSet)
          case _ => ()
       }
 
-      // Output game status to log
-      Log.d(logTag, "game status-  tiles: %02d  moves: %03d"
-         .format(Game.remainingTiles(game.board), game.undo.length))
+      // Display game status on the dashboard
+      dashTiles.setText("tiles: %02d"
+         .format(Game.remainingTiles(game.board)))
+      dashMoves.setText("moves: %03d".format(game.undo.length))
    }
 
 
@@ -343,8 +347,15 @@ class SpectraHex extends Activity {
       game = g
 
       setContentView(R.layout.game)
-      val gameView = findViewById(R.id.game_view).asInstanceOf[GameView]
+
+      val gameView = findViewById(R.id.game_view)
+         .asInstanceOf[GameView]
       gameView.game = game
+
+      gameView.dashTiles = findViewById(R.id.dashboard_tiles)
+         .asInstanceOf[TextView]
+      gameView.dashMoves = findViewById(R.id.dashboard_moves)
+         .asInstanceOf[TextView]
    }
 
 
