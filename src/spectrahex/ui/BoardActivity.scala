@@ -38,30 +38,33 @@ class GameView (context: Context, game: Game)
    extends View(context) {
 
    private var displayHexes: List[DisplayHex] = List()
-   private var fillPaint = new Paint
-   private var strokePaint = new Paint
+   private var hexFillPaint = new Paint
+   private var hexBorderPaint = new Paint
    private var selectionPaint = new Paint
+   //private var moveDestPaint = new Paint
 
    private val colorDustyBlue = 0xFF097286
 
    private val logTag = "GameView"
 
 
-   // Construct the paints we'll need for all drawing
+   // Set up the paints we'll need for all drawing
+   //List(hexFillPaint, hexBorderPaint, selectionPaint, moveDestPaint)
+   List(hexFillPaint, hexBorderPaint, selectionPaint)
+      .foreach(_.setAntiAlias(true))
 
-   fillPaint.setStyle(Paint.Style.FILL)
-   fillPaint.setColor (colorDustyBlue)
-   fillPaint.setAntiAlias (true)
+   hexFillPaint.setStyle(Paint.Style.FILL)
 
-   strokePaint.setStyle(Paint.Style.STROKE)
-   strokePaint.setStrokeWidth (2)
-   strokePaint.setColor (Color.GRAY)
-   strokePaint.setAntiAlias (true)
+   hexBorderPaint.setStyle(Paint.Style.STROKE)
+   hexBorderPaint.setStrokeWidth (2)
+   hexBorderPaint.setColor(Color.GRAY)
 
    selectionPaint.setStyle(Paint.Style.STROKE)
    selectionPaint.setStrokeWidth (3)
-   selectionPaint.setColor (Color.WHITE)
-   selectionPaint.setAntiAlias (true)
+   selectionPaint.setColor(Color.WHITE)
+
+   //moveDestPaint.setStyle(Paint.Style.FILL)
+   //moveDestPaint.setColor(colorDustyBlue)
 
 
    override def onSizeChanged (w: Int, h: Int, oldw: Int, oldh: Int) = {
@@ -158,10 +161,10 @@ class GameView (context: Context, game: Game)
       displayHexes.foreach {
          case DisplayHex(cpos@Pos(x, y), path, _) => {
             val sc = colorAt (game.board) (Pos(x, y))
-            fillPaint.setColor(colorMap(sc))
+            hexFillPaint.setColor(colorMap(sc))
 
-            canvas.drawPath (path, fillPaint)
-            canvas.drawPath (path, strokePaint)
+            canvas.drawPath (path, hexFillPaint)
+            canvas.drawPath (path, hexBorderPaint)
          }
       }
 
