@@ -20,3 +20,5 @@
 - change selection from white outline to a filled circle
 
 - ability to install on the SD card (external storage)
+
+- do not respond to orientation change
