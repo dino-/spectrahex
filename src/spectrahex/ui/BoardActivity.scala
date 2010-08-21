@@ -41,7 +41,8 @@ case class DisplayHex (
 class GameView (context: Context, attrs: AttributeSet)
    extends View(context, attrs) {
 
-   var game: Game = null
+   private var game: Game = null
+
    var dashTiles: TextView = null
    var dashMoves: TextView = null
 
@@ -82,6 +83,12 @@ class GameView (context: Context, attrs: AttributeSet)
 
    moveStrokePaint.setStyle(Paint.Style.STROKE)
    moveStrokePaint.setColor(Color.WHITE)
+
+
+   def initialize (g: Game) {
+      game = g
+      updateDashboard
+   }
 
 
    // A group of math functions to compute the size of specific numbers
@@ -137,6 +144,13 @@ class GameView (context: Context, attrs: AttributeSet)
             DisplayHex (Pos(x, y), p,
                finalOffsetX, finalOffsetY, getRegion(p))
          }).toList
+   }
+
+
+   def updateDashboard = {
+      dashTiles.setText("%02d tiles"
+         .format(Game.remainingTiles(game.board)))
+      dashMoves.setText("moves %02d".format(game.undo.length))
    }
 
 
@@ -196,7 +210,7 @@ class GameView (context: Context, attrs: AttributeSet)
 
 
    override def onDraw (canvas: Canvas) = {
-      //Log.d(logTag, "onDraw called")
+      //Log.d(logTag, "GameView.onDraw called")
 
       // Paint all hexes
       displayHexes.foreach {
@@ -234,10 +248,6 @@ class GameView (context: Context, attrs: AttributeSet)
          case _ => ()
       }
 
-      // Display game status on the dashboard
-      dashTiles.setText("%02d tiles"
-         .format(Game.remainingTiles(game.board)))
-      dashMoves.setText("moves %02d".format(game.undo.length))
    }
 
 
@@ -278,7 +288,10 @@ class GameView (context: Context, attrs: AttributeSet)
             touchedHex(x.toInt, y.toInt) match {
                case Some(p) => {
                   val repaint = adjustState(p)
-                  if (repaint) invalidate()
+                  if (repaint) {
+                     updateDashboard
+                     invalidate()
+                  }
                   true
                }
                case None => false
@@ -351,12 +364,13 @@ class SpectraHex extends Activity {
 
       val gameView = findViewById(R.id.game_view)
          .asInstanceOf[GameView]
-      gameView.game = game
 
       gameView.dashTiles = findViewById(R.id.dashboard_tiles)
          .asInstanceOf[TextView]
       gameView.dashMoves = findViewById(R.id.dashboard_moves)
          .asInstanceOf[TextView]
+
+      gameView.initialize(game)
    }
 
 
