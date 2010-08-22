@@ -199,7 +199,8 @@ class GameView (context: Context, attrs: AttributeSet)
          case Green   => Color.GREEN
          //case Green   => 0xff339900
          //case Orange  => 0xffff6600  // Too close to red?
-         case Orange  => 0xffffa500  // "web colour"
+         case Orange  => 0xffff8500  // halfway between these two oranges
+         //case Orange  => 0xffffa500  // "web colour"
          //case Gray    => Color.GRAY
          case Gray    => 0xff424242
       }
