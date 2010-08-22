@@ -299,10 +299,55 @@ object Game {
 
             game.board = newBoard
             game.undo ::= m
+            game.redo = List()
             game.selection = None
             true
          }
          case _ => false
+      }
+   }
+
+
+   def undoMove (game: Game): Boolean = {
+      val move = game.undo.headOption
+      move match {
+         case Some(m) => {
+            val newBoard = game.board.map { (bc) =>
+               if (bc.pos == m.beforeStart.pos) m.beforeStart
+               else if (bc.pos == m.beforeSubtract.pos) m.beforeSubtract
+               else if (bc.pos == m.beforeAdd.pos) m.beforeAdd
+               else bc
+            }
+
+            game.board = newBoard
+            game.undo = game.undo.tail
+            game.redo ::= m
+            game.selection = Some(m.beforeStart.pos)
+            true
+         }
+         case None => false
+      }
+   }
+
+
+   def redoMove (game: Game): Boolean = {
+      val move = game.redo.headOption
+      move match {
+         case Some(m) => {
+            val newBoard = game.board.map { (bc) =>
+               if (bc.pos == m.afterStart.pos) m.afterStart
+               else if (bc.pos == m.afterSubtract.pos) m.afterSubtract
+               else if (bc.pos == m.afterAdd.pos) m.afterAdd
+               else bc
+            }
+
+            game.board = newBoard
+            game.undo ::= m
+            game.redo = game.redo.tail
+            game.selection = None
+            true
+         }
+         case None => false
       }
    }
 

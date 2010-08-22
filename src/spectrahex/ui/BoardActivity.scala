@@ -17,7 +17,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.Window
+import android.widget.Button
 import android.widget.TextView
 import java.io.FileNotFoundException
 import java.io.PrintStream
@@ -291,7 +293,7 @@ class GameView (context: Context, attrs: AttributeSet)
                   val repaint = adjustState(p)
                   if (repaint) {
                      updateDashboard
-                     invalidate()
+                     invalidate
                   }
                   true
                }
@@ -358,6 +360,28 @@ class SpectraHex extends Activity {
    }
 
 
+   private val undoClickListener = new OnClickListener() {
+      def onClick (v: View) {
+         Game.undoMove(game)
+         val gameView = findViewById(R.id.game_view)
+            .asInstanceOf[GameView]
+         gameView.updateDashboard
+         gameView.invalidate
+      }
+   }
+
+
+   private val redoClickListener = new OnClickListener() {
+      def onClick (v: View) {
+         Game.redoMove(game)
+         val gameView = findViewById(R.id.game_view)
+            .asInstanceOf[GameView]
+         gameView.updateDashboard
+         gameView.invalidate
+      }
+   }
+
+
    def newGame (g: Game) = {
       game = g
 
@@ -372,6 +396,14 @@ class SpectraHex extends Activity {
          .asInstanceOf[TextView]
 
       gameView.initialize(game)
+
+      val undoButton = findViewById(R.id.button_undo)
+         .asInstanceOf[Button]
+      undoButton.setOnClickListener(undoClickListener)
+
+      val redoButton = findViewById(R.id.button_redo)
+         .asInstanceOf[Button]
+      redoButton.setOnClickListener(redoClickListener)
    }
 
 
