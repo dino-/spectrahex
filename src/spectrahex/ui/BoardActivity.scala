@@ -150,9 +150,9 @@ class GameView (context: Context, attrs: AttributeSet)
 
 
    def updateDashboard = {
-      dashTiles.setText("%02d tiles"
-         .format(Game.remainingTiles(game.board)))
-      dashMoves.setText("moves %02d".format(game.undo.length))
+      dashTiles.setText(Util.padNumber(Game.remainingTiles(game.board))
+         + " tiles")
+      dashMoves.setText("moves " + Util.padNumber(game.undo.length))
    }
 
 

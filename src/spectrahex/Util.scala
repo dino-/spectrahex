@@ -11,6 +11,14 @@ object Util {
    val logTag = "SpectraHex"
 
 
+   def padNumber (n: Int):String = {
+      val sb = new StringBuffer
+      if (n < 10) sb.append("0")
+      sb.append(n.toString)
+      sb.toString
+   }
+
+
    def isEven (n: Int): Boolean = n % 2 == 0
 
 
