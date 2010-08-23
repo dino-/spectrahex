@@ -28,7 +28,7 @@ import java.util.Properties
 import spectrahex.game._
 import spectrahex.game.Game._
 import spectrahex.game.color.{Color => SymColor, _}
-import spectrahex.Util._
+import spectrahex.Util
 
 
 case class DisplayHex (
@@ -135,7 +135,7 @@ class GameView (context: Context, attrs: AttributeSet)
       displayHexes =
          (for (x <- (0 to 5); y <- (0 to 5))
          yield {
-            val yOddOffset = if (isEven (x)) 0 else perpDist
+            val yOddOffset = if (Util.isEven (x)) 0 else perpDist
 
             val p = new Path(startingPath)
 
@@ -261,7 +261,7 @@ class GameView (context: Context, attrs: AttributeSet)
             else None
          }
       }
-      catOptions(hs).headOption
+      Util.catOptions(hs).headOption
    }
 
 
@@ -345,7 +345,7 @@ class SpectraHex extends Activity {
       super.onPause()
 
       val props = Game.toProperties(game)
-      props.setProperty("versionCode", versionCode(this).toString)
+      props.setProperty("versionCode", Util.versionCode(this).toString)
 
       val fos = openFileOutput(gameStateFile, Context.MODE_PRIVATE)
       val ps = new PrintStream(fos)
