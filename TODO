@@ -1,15 +1,12 @@
+- detect when game no more moves are possible, deal with endgame or undo
+
+- enable/disable undo and redo buttons as necessary
+
+- style undo/redo buttons to be more like the rest of the UI
+
 - more elaborate About dialog
 
-- undo/redo stacks
-   This changes how the board is stored, I'm guessing. Two possibilities were discussed with B:
-
-   - Store the initial board state plus list of all moves. The board view applies all moved to the pristine board up to the head of the redo stack.
-
-   - Store the current state of the board plus a list of pairs of states of 3 hexes like this:
-      ((beforeOrigin, beforeSubtract, beforeAdd),
-       (afterOrigin, afterSubtract, afterAdd))
-
-- dashboard
+- more elaborate dashboard
 
 - application icon
 
@@ -18,3 +15,5 @@
 - ability to install on the SD card (external storage)
 
 - do not respond to orientation change
+
+- add help to explain the game
