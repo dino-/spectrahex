@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
    <color name="black">#ff000000</color>
-
-   <color name="gray25">#ffbdbdbd</color>
-   <color name="gray50">#ff7c7c7c</color>
-   <color name="gray75">#ff333333</color>
-   <color name="gray85">#ff1d1d1d</color>
+   <color name="gray16">#ff161616</color>
+   <color name="gray7f">#ff7f7f7f</color>
+   <color name="gray99">#ff999999</color>
+   <color name="graybd">#ffbdbdbd</color>
 
    <color name="dustyOrange">#ffcc6600</color>
 </resources>
