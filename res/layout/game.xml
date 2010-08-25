@@ -46,7 +46,7 @@
          android:textColor="@color/graybd"
          android:background="@drawable/custom_button"
          android:layout_marginLeft="5dip"
-         android:layout_marginRight="3dip"
+         android:layout_marginRight="5dip"
       />
       <Button
          android:id="@+id/button_redo"
@@ -57,7 +57,7 @@
          android:textSize="20.0sp"
          android:textColor="@color/graybd"
          android:background="@drawable/custom_button"
-         android:layout_marginLeft="3dip"
+         android:layout_marginLeft="5dip"
          android:layout_marginRight="5dip"
       />
    </LinearLayout>
