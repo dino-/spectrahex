@@ -30,6 +30,20 @@
         </shape>
     </item>
 
+    <item android:state_enabled="false" >
+        <shape>
+            <gradient
+                android:endColor="@color/gray16"
+                android:startColor="@color/black"
+                android:angle="270" />
+            <stroke
+                android:width="1dip"
+                android:color="@color/black" />
+            <corners
+                android:radius="5dip" />
+        </shape>
+    </item>
+
     <item>
         <shape>
             <gradient

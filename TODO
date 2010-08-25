@@ -1,7 +1,5 @@
 - detect when game no more moves are possible, deal with endgame or undo
 
-- enable/disable undo and redo buttons as necessary
-
 - more elaborate About dialog
 
 - more elaborate dashboard

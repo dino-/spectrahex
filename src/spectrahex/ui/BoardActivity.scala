@@ -47,6 +47,8 @@ class GameView (context: Context, attrs: AttributeSet)
 
    var dashTiles: TextView = null
    var dashMoves: TextView = null
+   var undoButton: Button = null
+   var redoButton: Button = null
 
    private var displayHexes: List[DisplayHex] = List()
    private var hexFillPaint = new Paint
@@ -89,7 +91,7 @@ class GameView (context: Context, attrs: AttributeSet)
 
    def initialize (g: Game) {
       game = g
-      updateDashboard
+      updateControlStates
    }
 
 
@@ -149,10 +151,13 @@ class GameView (context: Context, attrs: AttributeSet)
    }
 
 
-   def updateDashboard = {
+   def updateControlStates = {
       dashTiles.setText(Util.padNumber(Game.remainingTiles(game.board))
          + " tiles")
       dashMoves.setText("moves " + Util.padNumber(game.undo.length))
+
+      undoButton.setEnabled(! game.undo.isEmpty)
+      redoButton.setEnabled(! game.redo.isEmpty)
    }
 
 
@@ -292,7 +297,7 @@ class GameView (context: Context, attrs: AttributeSet)
                case Some(p) => {
                   val repaint = adjustState(p)
                   if (repaint) {
-                     updateDashboard
+                     updateControlStates
                      invalidate
                   }
                   true
@@ -365,7 +370,7 @@ class SpectraHex extends Activity {
          Game.undoMove(game)
          val gameView = findViewById(R.id.game_view)
             .asInstanceOf[GameView]
-         gameView.updateDashboard
+         gameView.updateControlStates
          gameView.invalidate
       }
    }
@@ -376,7 +381,7 @@ class SpectraHex extends Activity {
          Game.redoMove(game)
          val gameView = findViewById(R.id.game_view)
             .asInstanceOf[GameView]
-         gameView.updateDashboard
+         gameView.updateControlStates
          gameView.invalidate
       }
    }
@@ -395,15 +400,17 @@ class SpectraHex extends Activity {
       gameView.dashMoves = findViewById(R.id.dashboard_moves)
          .asInstanceOf[TextView]
 
-      gameView.initialize(game)
-
       val undoButton = findViewById(R.id.button_undo)
          .asInstanceOf[Button]
       undoButton.setOnClickListener(undoClickListener)
+      gameView.undoButton = undoButton
 
       val redoButton = findViewById(R.id.button_redo)
          .asInstanceOf[Button]
       redoButton.setOnClickListener(redoClickListener)
+      gameView.redoButton = redoButton
+
+      gameView.initialize(game)
    }
 
 
