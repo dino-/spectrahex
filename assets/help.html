@@ -1,0 +1,150 @@
+<html>
+   <head>
+      <style> <!--
+         .fixme {
+            color: red;
+         }
+
+         body {
+            color: white;
+            background-color: black;
+            font-family: sans-serif;
+         }
+      --> </style>
+   </head>
+   <body>
+<h2></h2>
+
+<h1>SpectraHex instructions</h1>
+
+<h2>Game introduction</h2>
+
+<p>SpectraHex is a single player game in which the objective is to remove as many hexagonal tiles as you can from the game board, in as few moves as possible.</p>
+
+<p>At the game start, you are presented with a full board of randomly placed colored tiles.</p>
+
+<p>Moves consist of leaping a tile over an adjacent tile and onto an empty space or tile. Tiles interact with each other based on their color. More details on move types later.</p>
+
+<p>If you can remove all but a single primary-colored tile, you have done all you can do, and have solved that particular game.</p>
+
+<p>During a game you may undo and redo moves that have been made. This is a normal part of game play and you are encouraged to backtrack to try different approaches.</p>
+
+<p>Hexes on the board may be empty, or filled with one, two or three tiles. The color of the hex shows you which tiles are present. Empty spaces are black. The other colors are explained next.</p>
+
+
+<h2>The tiles</h2>
+
+<h3>Primary</h3>
+
+<p>Primary tiles are the three traditional subtractive primary colors. Red, blue and yellow, these count as one tile remaining:</p>
+
+<img src="tile-red.png" alt="red tile" />
+<img src="tile-blue.png" alt="red tile" />
+<img src="tile-yellow.png" alt="red tile" />
+
+<h3>Secondary</h3>
+
+<p>Secondary tiles are combinations of two of the three primary colors. You will likely know these from painting or coloring. Orange, green and violet, these count as two tiles remaining:</p>
+
+<img src="tile-orange.png" alt="red tile" />
+<img src="tile-green.png" alt="red tile" />
+<img src="tile-violet.png" alt="red tile" />
+
+<h3>Tertiary</h3>
+
+<p>The tertiary tile is all three primaries combined. Shown as gray, they count as three tiles remaining:</p>
+
+<img src="tile-gray.png" alt="red tile" />
+
+
+<h2>Moving</h2>
+
+<h3>The moves</h3>
+
+<p>There are several kinds of move in SpectraHex. A move means a starting tile will leave its hex, jump over another tile (but NOT over an empty space) and arrive at the hex on the other side.</p>
+
+<p>The starting tile will have an effect on both the tile it leaps over and any it arrives on.</p>
+
+<p>A primary leaping over any other primary will remove it.</p>
+
+<p><img src="red-red-empty.png" /></p>
+<p><img src="red-blue-empty.png" /></p>
+
+<p>Primary tiles may land on an empty space or the same primary, which will now contain that one primary.</p>
+
+<p><img src="yellow-yellow-yellow.png" /></p>
+
+<p>A primary leaping over a secondary that contains it will subtract that primary from the secondary.</p>
+
+<p><img src="blue-green-empty.png" /></p>
+<p><img src="blue-violet-blue.png" /></p>
+
+<p>A primary leaping over a tertiary will subtract that primary from the tertiary.</p>
+
+<p><img src="yellow-gray-empty.png" /></p>
+
+<p>Secondary tiles may leap over the same secondary, removing it.</p>
+
+<p><img src="orange-orange-empty.png" /></p>
+
+<p>Secondary tiles may land on an empty space or the same secondary, which will now contain that one secondary.</p>
+
+<p><img src="green-green-green.png" /></p>
+
+<p>A Secondary may leap over a tertiary, subtracting the secondary's two colors from it.</p>
+
+<p><img src="green-gray-empty.png" /></p>
+<p><img src="violet-gray-violet.png" /></p>
+
+<p>Tertiary tiles may only leap over another tertiary, removing it.</p>
+
+<p>Tertiary tiles may only land on an empty hex or another tertiary, which will then contain the one tertiary.</p>
+
+<p><img src="gray-gray-empty.png" /></p>
+<p><img src="gray-gray-gray.png" /></p>
+
+<p>Primary tiles may also land on a different primary, in which case they will be added together, forming a secondary.</p>
+
+<p><img src="red-yellow-blue.png" /></p>
+
+<p>Primary tiles may land on a secondary, adding their color to the other two if possible, forming a tertiary.</p>
+
+<p><img src="blue-red-orange.png" /></p>
+
+<p>Secondary tiles may also land on a primary, in which case they will be added together if possible, forming a tertiary.</p>
+
+<p><img src="green-green-red.png" /></p>
+
+<h3>How to move</h3>
+
+<p>To start a move, select a tile by tapping on it. The board will highlight that tile with a white circle and will also highlight any legal destinations for it with black circles.</p>
+
+<p>To complete the move, tap one of the destinations.</p>
+
+<p>To cancel your move, tap the starting tile again (marked with a white circle) and it will be unselected, leaving the board unchanged.</p>
+
+
+<h2>Difficulty levels</h2>
+
+<h3>Normal</h3>
+
+<p>A normal game consists of 36 randomly placed primary tiles, 12 red, 12 blue and 12 yellow.</p>
+
+<h3>Difficult</h3>
+
+<p>A difficult game is 9 each of red, blue and yellow, and 3 each of violet, green and orange. Making a total of 45 tiles.</p>
+
+<h3>Impossible</h3>
+
+<p>An impossible game is 16 equally distributed primaries, 16 equally distributed secondaries, and 4 tertiaries. Making a total of 60 tiles. This is very tough!</p>
+
+
+<h2>Tips</h2>
+
+   <ul>
+      <li>Try to get tiles away from the corners and edges</li>
+      <li>Don't be afraid to use Undo/Redo. Trying different approaches is part of the fun.</li>
+   </ul>
+
+   </body>
+</html>

@@ -11,7 +11,7 @@ SpectraHex activity:
       - High scores
       + About
       + Exit Application
-   - Help (ic_menu_help.png)
+   + Help (ic_menu_help.png)
    - Undo all moves (ic_menu_revert.png)
 
 
