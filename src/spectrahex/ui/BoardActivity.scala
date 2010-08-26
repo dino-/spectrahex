@@ -440,7 +440,6 @@ class SpectraHex extends Activity {
             true
          }
          case R.id.exit => {
-            // Confirm this?
             finish()
             true
          }
