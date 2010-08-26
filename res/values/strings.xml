@@ -12,6 +12,8 @@
    <string name="about">About</string>
    <string name="exit">Exit Application</string>
 
+   <string name="help">Help</string>
+
    <!-- ui resources -->
    <string name="button_undo">Undo</string>
    <string name="button_redo">Redo</string>

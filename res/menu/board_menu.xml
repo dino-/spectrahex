@@ -16,6 +16,10 @@
       </menu>
    </item>
    <item
+      android:id="@+id/help"
+      android:icon="@drawable/ic_menu_help"
+      android:title="@string/help" />
+   <item
       android:icon="@drawable/ic_menu_more"
       android:title="@string/more">
       <menu>

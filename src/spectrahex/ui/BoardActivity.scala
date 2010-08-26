@@ -3,6 +3,7 @@ package spectrahex.ui
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Matrix
@@ -437,6 +438,11 @@ class SpectraHex extends Activity {
          }
          case R.id.diff_impossible => {
             newGame(Game.mkGame(Impossible))
+            true
+         }
+         case R.id.help => {
+            val i = new Intent(this, classOf[HelpActivity])
+            startActivity(i)
             true
          }
          case R.id.exit => {
