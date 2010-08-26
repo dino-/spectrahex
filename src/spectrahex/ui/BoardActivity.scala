@@ -152,12 +152,16 @@ class GameView (context: Context, attrs: AttributeSet)
 
 
    def updateControlStates = {
-      dashTiles.setText(Util.padNumber(Game.remainingTiles(game.board))
-         + " tiles")
+      val remaining = Game.remainingTiles(game.board)
+      dashTiles.setText(Util.padNumber(remaining) + " tiles")
       dashMoves.setText("moves " + Util.padNumber(game.undo.length))
 
       undoButton.setEnabled(! game.undo.isEmpty)
       redoButton.setEnabled(! game.redo.isEmpty)
+
+      if (remaining < 2)
+         context.asInstanceOf[SpectraHex]
+            .showDialog(SpectraHex.DIALOG_WIN)
    }
 
 
@@ -441,20 +445,25 @@ class SpectraHex extends Activity {
             true
          }
          case R.id.about => {
-            showDialog(DIALOG_ABOUT)
+            showDialog(SpectraHex.DIALOG_ABOUT)
             true
          }
          case _ => super.onOptionsItemSelected(item)
       }
 
 
-   // FIXME: Put this in a common place?
-   val DIALOG_ABOUT = 0
-
    override protected def onCreateDialog (id: Int): Dialog =
       id match {
-         case DIALOG_ABOUT => AboutDialog.create(this)
+         case SpectraHex.DIALOG_ABOUT => AboutDialog.create(this)
+         case SpectraHex.DIALOG_WIN => WinDialog.create(this)
          case _ => null
       }
+
+}
+
+object SpectraHex {
+
+   val DIALOG_ABOUT = 0
+   val DIALOG_WIN = 1
 
 }
