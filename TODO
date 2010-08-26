@@ -1,6 +1,12 @@
+- maybe some line above action to h2 sections in the help
+
+- add developer email info to help
+
 - make the demo build, some kind of forked branch maybe?
+   Demo means full functionality but only 12 games allowed.
 
 - more elaborate About dialog
+   Make email clickable
 
 - more elaborate dashboard
 
