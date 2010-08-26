@@ -5,14 +5,14 @@
       android:title="@string/new_game">
       <menu>
          <item
-            android:id="@+id/diff_easy"
-            android:title="@string/diff_easy" />
-         <item
-            android:id="@+id/diff_intermediate"
-            android:title="@string/diff_intermediate" />
+            android:id="@+id/diff_normal"
+            android:title="@string/diff_normal" />
          <item
             android:id="@+id/diff_difficult"
             android:title="@string/diff_difficult" />
+         <item
+            android:id="@+id/diff_impossible"
+            android:title="@string/diff_impossible" />
       </menu>
    </item>
    <item

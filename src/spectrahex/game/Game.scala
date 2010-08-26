@@ -41,9 +41,9 @@ object Cell {
 
 
 sealed abstract class Difficulty
-case object Easy extends Difficulty
-case object Intermediate extends Difficulty
+case object Normal extends Difficulty
 case object Difficult extends Difficulty
+case object Impossible extends Difficulty
 
 
 case class Move (
@@ -149,12 +149,12 @@ object Game {
 
    def randomTiles (diff: Difficulty) = {
       val distMapping = diff match {
-         case Easy         => List(
+         case Normal => List(
             (12, Red),
             (12, Blue),
             (12, Yellow)
          )
-         case Intermediate => List(
+         case Difficult => List(
             (9, Red),
             (9, Blue),
             (9, Yellow),
@@ -162,7 +162,7 @@ object Game {
             (3, Green),
             (3, Orange)
          )
-         case Difficult    => List(
+         case Impossible => List(
             (5, Red),
             (5, Blue),
             (5, Yellow),

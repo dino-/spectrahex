@@ -325,7 +325,7 @@ class SpectraHex extends Activity {
 
       loadState match {
          case Some(g) => newGame(g)
-         case None => newGame(Game.mkGame(Easy))
+         case None => newGame(Game.mkGame(Normal))
       }
    }
 
@@ -423,16 +423,16 @@ class SpectraHex extends Activity {
 
    override def onOptionsItemSelected (item: MenuItem): Boolean =
       item.getItemId() match {
-         case R.id.diff_easy => {
-            newGame(Game.mkGame(Easy))
-            true
-         }
-         case R.id.diff_intermediate => {
-            newGame(Game.mkGame(Intermediate))
+         case R.id.diff_normal => {
+            newGame(Game.mkGame(Normal))
             true
          }
          case R.id.diff_difficult => {
             newGame(Game.mkGame(Difficult))
+            true
+         }
+         case R.id.diff_impossible => {
+            newGame(Game.mkGame(Impossible))
             true
          }
          case R.id.exit => {

@@ -4,9 +4,9 @@
 
    <!-- menu string resources -->
    <string name="new_game">New game</string>
-   <string name="diff_easy">Easy</string>
-   <string name="diff_intermediate">Intermediate</string>
+   <string name="diff_normal">Normal</string>
    <string name="diff_difficult">Difficult</string>
+   <string name="diff_impossible">Impossible</string>
 
    <string name="more">More</string>
    <string name="about">About</string>

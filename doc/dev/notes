@@ -29,14 +29,14 @@ secondary    X         9 25%   16 43.75%
 
 tertiary     X         X        4 12.5%
 
-difficulty   E        I        D
+difficulty   N        D        I
 
 
 So, this means:
 
-An Easy game will have 36 randomly selected primaries.
-An Intermediate game will have 27 randomly selected primaries and 9 randomly selected secondaries.
-A Difficult game will have 16 randomly selected primaries, 16 randomly selected secondaries and 4 tertiaries (which can only be Gray. But are a bitch to get rid of)
+A Normal game will have 36 randomly selected primaries.
+A Difficult game will have 27 randomly selected primaries and 9 randomly selected secondaries.
+An Impossible game will have 16 randomly selected primaries, 16 randomly selected secondaries and 4 tertiaries (which can only be Gray. But are a bitch to get rid of)
 
 
 board size: 45
@@ -49,14 +49,14 @@ secondary    X        11 25%   20 43.75%
 
 tertiary     X         X        5 12.5%
 
-difficulty   E        I        D
+difficulty   N        D        I
 
 
 So, this means:
 
-An Easy game will have 45 randomly selected primaries.
-An Intermediate game will have 34 randomly selected primaries and 11 randomly selected secondaries.
-A Difficult game will have 20 randomly selected primaries, 20 randomly selected secondaries and 5 tertiaries (which can only be Gray. But are a bitch to get rid of)
+A Normal game will have 45 randomly selected primaries.
+A Difficult game will have 34 randomly selected primaries and 11 randomly selected secondaries.
+An Impossible game will have 20 randomly selected primaries, 20 randomly selected secondaries and 5 tertiaries (which can only be Gray. But are a bitch to get rid of)
 
 
 -----
