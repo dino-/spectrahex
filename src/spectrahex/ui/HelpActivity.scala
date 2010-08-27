@@ -14,7 +14,7 @@ class HelpActivity extends Activity {
    override def onCreate (savedInstanceState: Bundle) {
       super.onCreate(savedInstanceState)
 
-      //requestWindowFeature (Window.FEATURE_NO_TITLE)
+      requestWindowFeature (Window.FEATURE_NO_TITLE)
 
       val wv = new WebView(this)
 
