@@ -1,7 +1,5 @@
 - Found a strange bug on first-time run: save state not getting saved. But works on subsequent executions. Need logging.
 
-- Change SpectraHex activity to GameActivity
-
 - make the demo build, some kind of forked branch maybe?
    Demo means full functionality but only 12 games allowed.
 

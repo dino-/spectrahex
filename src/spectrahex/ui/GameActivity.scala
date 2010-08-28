@@ -161,8 +161,8 @@ class GameView (context: Context, attrs: AttributeSet)
       redoButton.setEnabled(! game.redo.isEmpty)
 
       if (remaining < 2)
-         context.asInstanceOf[SpectraHex]
-            .showDialog(SpectraHex.DIALOG_WIN)
+         context.asInstanceOf[GameActivity]
+            .showDialog(GameActivity.DIALOG_WIN)
    }
 
 
@@ -316,7 +316,7 @@ class GameView (context: Context, attrs: AttributeSet)
 }
 
 
-class SpectraHex extends Activity {
+class GameActivity extends Activity {
 
    private var game: Game = null
 
@@ -450,7 +450,7 @@ class SpectraHex extends Activity {
             true
          }
          case R.id.about => {
-            showDialog(SpectraHex.DIALOG_ABOUT)
+            showDialog(GameActivity.DIALOG_ABOUT)
             true
          }
          case _ => super.onOptionsItemSelected(item)
@@ -459,14 +459,14 @@ class SpectraHex extends Activity {
 
    override protected def onCreateDialog (id: Int): Dialog =
       id match {
-         case SpectraHex.DIALOG_ABOUT => AboutDialog.create(this)
-         case SpectraHex.DIALOG_WIN => WinDialog.create(this)
+         case GameActivity.DIALOG_ABOUT => AboutDialog.create(this)
+         case GameActivity.DIALOG_WIN => WinDialog.create(this)
          case _ => null
       }
 
 }
 
-object SpectraHex {
+object GameActivity {
 
    val DIALOG_ABOUT = 0
    val DIALOG_WIN = 1
