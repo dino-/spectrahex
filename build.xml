@@ -28,6 +28,11 @@
          -->
     <property file="build.properties" />
 
+   <symlink action="single"
+      link="AndroidManifest.xml"
+      resource="AndroidManifest.xml-${build.type}"
+      overwrite="true" />
+
     <!-- The default.properties file is created and updated by the 'android' tool, as well
          as ADT.
          This file is an integral part of the build system for your application and
