@@ -120,7 +120,8 @@ versionName    versionCode
 
 change the version in these files:
 
-AndroidManifest.xml
+AndroidManifest.xml-normal
+AndroidManifest.xml-demo
 
 
 version numbering scheme

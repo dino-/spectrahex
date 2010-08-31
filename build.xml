@@ -133,6 +133,26 @@
 	      </external-libs>
 	   </dex-helper-proguard>
 	</target>
+
+   <!-- Generates the R.java file for this project's resources. -->
+   <target name="-resource-src" depends="-dirs">
+      <echo>Generating R.java / Manifest.java from the resources...</echo>
+      <exec executable="${aapt}" failonerror="true">
+         <arg value="package" />
+         <arg line="${v.option}" />
+         <arg value="-m" />
+         <arg value="-J" />
+         <arg path="${gen.absolute.dir}" />
+         <arg value="-M" />
+         <arg path="AndroidManifest.xml" />
+         <arg value="-S" />
+         <arg path="${resource.absolute.dir}" />
+         <arg value="-I" />
+         <arg path="${android.jar}" />
+         <arg value="--custom-package" />
+         <arg value="spectrahex.ui" />
+      </exec>
+   </target>
  
 
 </project>
