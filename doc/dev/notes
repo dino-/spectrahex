@@ -68,12 +68,18 @@ A color I liked:
 -----
 Running the emulator:
 
-   $ emulator -avd 1.6_128m_hvga &
+   $ emulator -avd 1.6_hvga &
    $ adb logcat
 
-Additional emulator info (like keyboard controls):
 
-   http://developer.android.com/guide/developing/tools/emulator.html
+   Additional emulator info (like keyboard controls):
+
+      http://developer.android.com/guide/developing/tools/emulator.html
+
+
+   Some emulator switches that are helpful:
+      -dpi-device 97
+      -scale 0.6
 
 
 -----
@@ -81,6 +87,35 @@ Installing on the device or emulator specifically:
 
    $ ant install -Dadb.device.arg=-d
    $ ant install -Dadb.device.arg=-e
+
+
+-----
+Creating emulators:
+
+   $ android create avd -n NAME -t TARGET -c 9M -s SKIN_NAME | WIDTH-HEIGHT
+
+   Name is the name you will use to identify/start it.
+   My convention is OS_SKIN:
+
+      1.6_hvga
+      2.1_wvga800
+
+
+   TARGET is the SDK platform:
+
+      $ android list targets
+
+
+   Skins are specific to SDK target versions, can be found in
+
+      /usr/local/share/android-sdk-linux_86/platforms/android-4/skins/
+
+   where android-4 is the SDK version you're interested in
+
+
+   See a list of emulators:
+
+      $ android list avd
 
 
 -----
