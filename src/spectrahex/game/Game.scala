@@ -1,12 +1,15 @@
 package spectrahex.game
 
+import android.content.Context
 //import android.util.Log
+import java.io.FileNotFoundException
+import java.io.PrintStream
 import java.util.Properties
 import scala.util.Random
 
 import spectrahex.game.color._
 import spectrahex.game.color.Color._
-import spectrahex.Util._
+import spectrahex.Util
 
 
 case class Pos (x: Int, y: Int)
@@ -77,6 +80,7 @@ object Move {
 
 
 class Game (
+   val context: Context,
    var board: Game.Board,
    var selection: Option[Pos],
    var undo: List[Move],
@@ -119,7 +123,7 @@ object Game {
    }
 
 
-   def fromProperties (props: Properties): Game = {
+   def fromProperties (context: Context, props: Properties): Game = {
       val cellStrings = props.getProperty("board").split('|')
       val cells = cellStrings.map(Cell.fromProperty).toList
 
@@ -143,7 +147,7 @@ object Game {
          case s => s.split('|').toList.map(Move.fromProperty)
       }
 
-      new Game(cells, selection, undo, redo)
+      new Game(context, cells, selection, undo, redo)
    }
 
 
@@ -195,7 +199,7 @@ object Game {
    */
    def allMoves (o: Pos): List[(Pos, Pos)] =
       o match {
-         case (Pos(x, y)) if (isEven(x)) => {
+         case (Pos(x, y)) if (Util.isEven(x)) => {
             List(
                (Pos(x + 1, y - 1), Pos(x + 2, y - 1)),
                (Pos(x + 1, y    ), Pos(x + 2, y + 1)),
@@ -252,8 +256,66 @@ object Game {
    def colorAt (b: Board) (p: Pos): Color = (cellAt (b) (p)) color
 
 
-   def mkGame (difficulty: Difficulty): Game =
-      new Game(randomBoard(difficulty), None, List(), List())
+   /* Functions to load and save Game data from persistent storage
+   */
+
+   private val gameStateFile = "game.properties"
+
+
+   def load (context: Context): Option[Game] = {
+      try {                     
+         val fis = context.openFileInput(gameStateFile)
+         val props = new Properties()
+         props.load(fis)
+         //Log.d(logTag, props.toString)
+         val g = fromProperties(context, props)
+         //Log.d(logTag, g.undo.toString)
+         Some(g)
+      }     
+      catch {
+         case ex: FileNotFoundException => None
+      }
+   }
+
+
+   def save (game: Game) = {
+      val context = game.context
+
+      val props = toProperties(game)
+      props.setProperty("versionCode",
+         Util.versionCode(context).toString)
+     
+      val fos = context.openFileOutput(gameStateFile, 
+         Context.MODE_PRIVATE)
+      val ps = new PrintStream(fos)
+      val en = props.propertyNames()
+      while (en.hasMoreElements()) {
+         val k = en.nextElement().toString
+         ps.println(k + "=" + props.getProperty(k))
+      }
+     
+      ps.flush()
+      ps.close()
+   }
+
+
+   /* These functions modify the game state, and are responsible for 
+      making sure that persistent storage occurs
+   */
+
+   def mkGame (context: Context, difficulty: Difficulty): Game = {
+      val game = new Game(context, randomBoard(difficulty), 
+         None, List(), List())
+      save(game)
+      game
+   }
+
+
+   def setSelection (game: Game, oSel: Option[Pos]) = {
+      game.selection = oSel
+
+      save(game)
+   }
 
 
    def doMove (game: Game, end: Pos): Boolean = {
@@ -301,6 +363,7 @@ object Game {
             game.undo ::= m
             game.redo = List()
             game.selection = None
+            save(game)
             true
          }
          case _ => false
@@ -323,6 +386,7 @@ object Game {
             game.undo = game.undo.tail
             game.redo ::= m
             game.selection = Some(m.beforeStart.pos)
+            save(game)
             true
          }
          case None => false
@@ -345,6 +409,7 @@ object Game {
             game.undo ::= m
             game.redo = game.redo.tail
             game.selection = None
+            save(game)
             true
          }
          case None => false

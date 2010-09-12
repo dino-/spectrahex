@@ -1,16 +1,3 @@
-- Found a strange bug on first-time run: save state not getting saved. But works on subsequent executions. Need logging.
-
-   Can't reproduce this at all 2010-08-28
-
-   steps to reproduce:
-
-      - uninstall application on device
-      - install
-      - run, make a move so you can recognize the board later
-      - exit (make sure it's really unloaded?)
-      - run again, board isn't loaded
-      - repeat and it behaves normally?
-
 - make the demo build, some kind of forked branch maybe?
    Demo means full functionality but only 12 games allowed.
    Or maybe full functionality but only 15 non-consecutive days.

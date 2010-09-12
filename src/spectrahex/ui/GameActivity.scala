@@ -13,9 +13,6 @@ import android.view.View.OnClickListener
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
-import java.io.FileNotFoundException
-import java.io.PrintStream
-import java.util.Properties
 
 import spectrahex.game._
 import spectrahex.game.Game._
@@ -26,53 +23,16 @@ class GameActivity extends Activity {
 
    private var game: Game = null
 
-   private val gameStateFile = "game.properties"
-
 
    override def onCreate (savedInstanceState: Bundle) {
       super.onCreate (savedInstanceState)
 
       requestWindowFeature (Window.FEATURE_NO_TITLE)
 
-      loadState match {
+      Game.load(this) match {
          case Some(g) => newGame(g)
-         case None => newGame(Game.mkGame(Normal))
+         case None => newGame(Game.mkGame(this, Normal))
       }
-   }
-
-
-   def loadState: Option[Game] = {
-      try {
-         val fis = openFileInput(gameStateFile)
-         val props = new Properties()
-         props.load(fis)
-         //Log.d(logTag, props.toString)
-         val g = Game.fromProperties(props)
-         //Log.d(logTag, g.undo.toString)
-         Some(g)
-      }
-      catch {
-         case ex: FileNotFoundException => None
-      }
-   }
-
-
-   override def onPause () {
-      super.onPause()
-
-      val props = Game.toProperties(game)
-      props.setProperty("versionCode", Util.versionCode(this).toString)
-
-      val fos = openFileOutput(gameStateFile, Context.MODE_PRIVATE)
-      val ps = new PrintStream(fos)
-      val en = props.propertyNames()
-      while (en.hasMoreElements()) {
-         val k = en.nextElement().toString
-         ps.println(k + "=" + props.getProperty(k))
-      }
-
-      ps.flush()
-      ps.close()
    }
 
 
@@ -135,15 +95,15 @@ class GameActivity extends Activity {
    override def onOptionsItemSelected (item: MenuItem): Boolean =
       item.getItemId() match {
          case R.id.diff_normal => {
-            newGame(Game.mkGame(Normal))
+            newGame(Game.mkGame(this, Normal))
             true
          }
          case R.id.diff_difficult => {
-            newGame(Game.mkGame(Difficult))
+            newGame(Game.mkGame(this, Difficult))
             true
          }
          case R.id.diff_impossible => {
-            newGame(Game.mkGame(Impossible))
+            newGame(Game.mkGame(this, Impossible))
             true
          }
          case R.id.help => {

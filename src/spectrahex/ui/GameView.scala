@@ -267,11 +267,11 @@ class GameView (context: Context, attrs: AttributeSet)
    def adjustState (touched: Pos): Boolean = {
       game.selection match {
          case None if (colorAt (game.board) (touched) != NoColor) => {
-            game.selection = Some(touched)
+            Game.setSelection(game, Some(touched))
             true
          }
          case Some(existingSelection) if (existingSelection == touched) => {
-            game.selection = None
+            Game.setSelection(game, None)
             true
          }
          case Some(existingSelection) => Game.doMove(game, touched)
