@@ -14,7 +14,7 @@ object AboutDialog {
 
       builder.setMessage("version " + Util.versionName(context) +
          "\nDino Morelli\ndino@ui3.info")
-            .setTitle("SpectraHex")
+            .setTitle(R.string.app_name)
             .setIcon(R.drawable.app_icon)
             .setPositiveButton("OK", null)
 

@@ -84,7 +84,8 @@ class Game (
    var board: Game.Board,
    var selection: Option[Pos],
    var undo: List[Move],
-   var redo: List[Move]
+   var redo: List[Move],
+   var playedGames: Int
    )
 
 object Game {
@@ -119,6 +120,8 @@ object Game {
       val redoProp = delimitList(game.redo)
       p.setProperty("redo", redoProp)
 
+      p.setProperty("playedGames", game.playedGames.toString)
+
       p
    }
 
@@ -147,7 +150,9 @@ object Game {
          case s => s.split('|').toList.map(Move.fromProperty)
       }
 
-      new Game(context, cells, selection, undo, redo)
+      val playedGames = props.getProperty("playedGames").toInt
+
+      new Game(context, cells, selection, undo, redo, playedGames)
    }
 
 
@@ -303,9 +308,11 @@ object Game {
       making sure that persistent storage occurs
    */
 
-   def mkGame (context: Context, difficulty: Difficulty): Game = {
+   def mkGame (context: Context, difficulty: Difficulty, 
+      playedGames: Int): Game = {
+
       val game = new Game(context, randomBoard(difficulty), 
-         None, List(), List())
+         None, List(), List(), playedGames)
       save(game)
       game
    }

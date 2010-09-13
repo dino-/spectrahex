@@ -21,7 +21,7 @@ import spectrahex.Util
 
 class GameActivity extends Activity {
 
-   private var game: Game = null
+   protected var game: Game = null
 
 
    override def onCreate (savedInstanceState: Bundle) {
@@ -31,7 +31,7 @@ class GameActivity extends Activity {
 
       Game.load(this) match {
          case Some(g) => newGame(g)
-         case None => newGame(Game.mkGame(this, Normal))
+         case None => newGame(Game.mkGame(this, Normal, 1))
       }
    }
 
@@ -92,18 +92,23 @@ class GameActivity extends Activity {
    }
 
 
+   def handleNewGame (diff: Difficulty) = {
+      newGame(Game.mkGame(this, diff, 1))
+   }
+
+
    override def onOptionsItemSelected (item: MenuItem): Boolean =
       item.getItemId() match {
          case R.id.diff_normal => {
-            newGame(Game.mkGame(this, Normal))
+            handleNewGame(Normal)
             true
          }
          case R.id.diff_difficult => {
-            newGame(Game.mkGame(this, Difficult))
+            handleNewGame(Difficult)
             true
          }
          case R.id.diff_impossible => {
-            newGame(Game.mkGame(this, Impossible))
+            handleNewGame(Impossible)
             true
          }
          case R.id.help => {

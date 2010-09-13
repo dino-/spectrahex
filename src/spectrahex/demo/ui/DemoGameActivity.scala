@@ -3,39 +3,34 @@ package spectrahex.demo.ui
 import android.app.Dialog
 import android.os.Bundle
 //import android.util.Log
-//import java.io.FileNotFoundException
-//import java.io.PrintStream
-//import java.util.Properties
 
 import spectrahex.ui._
-//import spectrahex.game._
-//import spectrahex.game.Game._
+import spectrahex.game._
+import spectrahex.game.Game._
 //import spectrahex.Util
 
 
 class DemoGameActivity extends GameActivity {
 
-   //private val gameStateFile = "game.properties"
-
-
    override def onCreate (savedInstanceState: Bundle) {
       super.onCreate (savedInstanceState)
 
-      showDialog(DemoGameActivity.DIALOG_DEMO)
+      showDialog(GameActivity.DIALOG_ABOUT)
    }
 
 
    override protected def onCreateDialog (id: Int): Dialog =
       id match {
-         case DemoGameActivity.DIALOG_DEMO => DemoAlert.create(this)
-         //case _ => null
+         case GameActivity.DIALOG_ABOUT => DemoAboutDialog.create(this)
          case _ => super.onCreateDialog(id)
       }
 
-}
 
-object DemoGameActivity {
-
-   val DIALOG_DEMO = 2
+   override def handleNewGame (diff: Difficulty) =
+      if (game.playedGames > 12) {
+         showDialog(GameActivity.DIALOG_ABOUT)
+      } else {
+         newGame(Game.mkGame(this, diff, game.playedGames + 1))
+      }
 
 }
