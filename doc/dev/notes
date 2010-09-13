@@ -16,6 +16,15 @@ SpectraHex activity:
 
 
 -----
+Possible future database schema
+
+   CREATE TABLE state (sel_x INTEGER, sel_y INTEGER, undo_pos INTEGER)
+   CREATE TABLE board (x INTEGER, y INTEGER, color TEXT, 
+      PRIMARY KEY (x, y))
+   CREATE TABLE undo (date INTEGER PRIMARY KEY, value CLOB)
+
+
+-----
 Distribution for different difficulty levels:
 
 
