@@ -82,6 +82,18 @@ Installing on the device or emulator specifically:
 
 
 -----
+Specifying the kind of build, normal or demo:
+
+   Default is a normal build (not demo). To build demo:
+
+      $ ant install -Dbuild.type=demo
+
+   If you want to be explicit about it, you can do this:
+
+      $ ant install -Dbuild.type=normal
+
+
+-----
 package manager and version info at runtime:
 
    val pm = getPackageManager()
