@@ -1,10 +1,11 @@
 package spectrahex.game
 
 import android.content.Context
-//import android.util.Log
+import android.util.Log
 import java.io.FileNotFoundException
 import java.io.PrintStream
 import java.util.Properties
+import scala.actors.Actor
 import scala.util.Random
 
 import spectrahex.game.color._
@@ -79,6 +80,27 @@ object Move {
 }
 
 
+object GameStorage extends Actor {
+
+   def act() =
+      loop {
+         react {
+            case g: Game => Game.save(g)
+            case x => {
+               val msg = if (x == null) { "null" }
+                         else { x.toString }
+               Log.e(Util.logTag,                                 
+                  "GameStorage received unknown message: " +
+                  msg)
+            }
+         }
+      }
+
+   start
+
+}
+
+
 class Game (
    val context: Context,
    var board: Game.Board,
@@ -102,7 +124,12 @@ object Game {
       l match {
          case Nil => ""
          case _ =>
-            l.map(_.toString).reduceLeft ((b, a) => b ++ "|" ++ a)
+            val sb = new StringBuffer
+            l.foreach { (s) =>
+               sb.append(s)
+               sb.append("|")
+            }
+            sb.toString
       }
 
 
@@ -294,9 +321,14 @@ object Game {
          Context.MODE_PRIVATE)
       val ps = new PrintStream(fos)
       val en = props.propertyNames()
+      val sb = new StringBuffer
       while (en.hasMoreElements()) {
          val k = en.nextElement().toString
-         ps.println(k + "=" + props.getProperty(k))
+         sb.setLength(0)
+         sb.append(k)
+         sb.append("=")
+         sb.append(props.getProperty(k))
+         ps.println(sb.toString)
       }
      
       ps.flush()
@@ -313,7 +345,7 @@ object Game {
 
       val game = new Game(context, randomBoard(difficulty), 
          None, List(), List(), playedGames)
-      save(game)
+      GameStorage ! game
       game
    }
 
@@ -321,7 +353,7 @@ object Game {
    def setSelection (game: Game, oSel: Option[Pos]) = {
       game.selection = oSel
 
-      save(game)
+      GameStorage ! game
    }
 
 
@@ -370,7 +402,7 @@ object Game {
             game.undo ::= m
             game.redo = List()
             game.selection = None
-            save(game)
+            GameStorage ! game
             true
          }
          case _ => false
@@ -393,7 +425,7 @@ object Game {
             game.undo = game.undo.tail
             game.redo ::= m
             game.selection = Some(m.beforeStart.pos)
-            save(game)
+            GameStorage ! game
             true
          }
          case None => false
@@ -416,7 +448,7 @@ object Game {
             game.undo ::= m
             game.redo = game.redo.tail
             game.selection = None
-            save(game)
+            GameStorage ! game
             true
          }
          case None => false
