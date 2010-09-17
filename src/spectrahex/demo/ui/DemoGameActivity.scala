@@ -7,7 +7,6 @@ import android.os.Bundle
 import spectrahex.ui._
 import spectrahex.game._
 import spectrahex.game.Game._
-//import spectrahex.Util
 
 
 class DemoGameActivity extends GameActivity {
