@@ -13,8 +13,6 @@ class DemoGameActivity extends GameActivity {
 
    override def onCreate (savedInstanceState: Bundle) {
       super.onCreate (savedInstanceState)
-
-      showDialog(GameActivity.DIALOG_ABOUT)
    }
 
 
