@@ -99,6 +99,24 @@
    </macrodef>
 
 
+   <macrodef name="package-helper">
+      <attribute name="sign.package" />
+      <element name="extra-jars" optional="yes" />
+      <sequential>
+         <apkbuilder
+            outfolder="${out.absolute.dir}"
+            basename="${ant.project.name}"
+            signed="@{sign.package}"
+            verbose="${verbose}">
+            <file path="${intermediate.dex.file}" />
+            <nativefolder path="${native.libs.absolute.dir}" />
+            <jarfolder path="${external.libs.absolute.dir}" />
+            <extra-jars/>
+         </apkbuilder>
+      </sequential>
+   </macrodef>
+
+
    <taskdef resource="scala/tools/ant/antlib.xml" classpath="${scala.dir}/lib/scala-compiler.jar:${scala.dir}/lib/scala-library.jar" />
 
    <taskdef resource="proguard/ant/task.properties"
