@@ -5,7 +5,7 @@ import android.util.Log
 import java.io.FileNotFoundException
 import java.io.PrintStream
 import java.util.Properties
-import scala.actors.Actor
+import scala.collection.mutable.Queue
 import scala.util.Random
 
 import spectrahex.game.color._
@@ -80,29 +80,39 @@ object Move {
 }
 
 
-object GameStorage extends Actor {
+object GameStorage extends Thread {
 
-   def act() =
-      loop {
-         react {
-            case g: Game => Game.save(g)
-            case x => {
-               val msg = if (x == null) { "null" }
-                         else { x.toString }
-               Log.e(Util.logTag,                                 
-                  "GameStorage received unknown message: " +
-                  msg)
-            }
+   var context: Context = null
+
+   val q = new Queue[Properties]
+
+
+   def scheduleSave (g: Game) = q.enqueue(Game.toProperties(g))
+
+
+   def getNext: Option[Properties] =
+      if (q.length > 0) { Some(q.dequeue) }
+      else { None }
+
+
+   override def run() {
+      while (true) {
+         getNext match {
+            case Some(p) => Game.save(context, p)
+            case _ => { }
          }
-      }
 
+         Thread.sleep(100)
+      }
+   }
+
+   setDaemon(true)
    start
 
 }
 
 
 class Game (
-   val context: Context,
    var board: Game.Board,
    var selection: Option[Pos],
    var undo: List[Move],
@@ -153,7 +163,7 @@ object Game {
    }
 
 
-   def fromProperties (context: Context, props: Properties): Game = {
+   def fromProperties (props: Properties): Game = {
       val cellStrings = props.getProperty("board").split('|')
       val cells = cellStrings.map(Cell.fromProperty).toList
 
@@ -179,7 +189,7 @@ object Game {
 
       val playedGames = props.getProperty("playedGames").toInt
 
-      new Game(context, cells, selection, undo, redo, playedGames)
+      new Game(cells, selection, undo, redo, playedGames)
    }
 
 
@@ -300,7 +310,7 @@ object Game {
          val props = new Properties()
          props.load(fis)
          //Log.d(logTag, props.toString)
-         val g = fromProperties(context, props)
+         val g = fromProperties(props)
          //Log.d(logTag, g.undo.toString)
          Some(g)
       }     
@@ -310,10 +320,7 @@ object Game {
    }
 
 
-   def save (game: Game) = {
-      val context = game.context
-
-      val props = toProperties(game)
+   def save (context: Context, props: Properties) = {
       props.setProperty("versionCode",
          Util.versionCode(context).toString)
      
@@ -340,12 +347,12 @@ object Game {
       making sure that persistent storage occurs
    */
 
-   def mkGame (context: Context, difficulty: Difficulty, 
+   def mkGame (difficulty: Difficulty, 
       playedGames: Int): Game = {
 
-      val game = new Game(context, randomBoard(difficulty), 
+      val game = new Game(randomBoard(difficulty), 
          None, List(), List(), playedGames)
-      GameStorage ! game
+      GameStorage.scheduleSave(game)
       game
    }
 
@@ -353,7 +360,7 @@ object Game {
    def setSelection (game: Game, oSel: Option[Pos]) = {
       game.selection = oSel
 
-      GameStorage ! game
+      GameStorage.scheduleSave(game)
    }
 
 
@@ -402,7 +409,7 @@ object Game {
             game.undo ::= m
             game.redo = List()
             game.selection = None
-            GameStorage ! game
+            GameStorage.scheduleSave(game)
             true
          }
          case _ => false
@@ -425,7 +432,7 @@ object Game {
             game.undo = game.undo.tail
             game.redo ::= m
             game.selection = Some(m.beforeStart.pos)
-            GameStorage ! game
+            GameStorage.scheduleSave(game)
             true
          }
          case None => false
@@ -448,7 +455,7 @@ object Game {
             game.undo ::= m
             game.redo = game.redo.tail
             game.selection = None
-            GameStorage ! game
+            GameStorage.scheduleSave(game)
             true
          }
          case None => false

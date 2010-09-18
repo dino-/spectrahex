@@ -27,7 +27,7 @@ class DemoGameActivity extends GameActivity {
       if (game.playedGames > 12) {
          showDialog(GameActivity.DIALOG_ABOUT)
       } else {
-         newGame(Game.mkGame(this, diff, game.playedGames + 1))
+         newGame(Game.mkGame(diff, game.playedGames + 1))
       }
 
 }

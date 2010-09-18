@@ -29,9 +29,11 @@ class GameActivity extends Activity {
 
       requestWindowFeature (Window.FEATURE_NO_TITLE)
 
+      GameStorage.context = this
+
       Game.load(this) match {
          case Some(g) => newGame(g)
-         case None => newGame(Game.mkGame(this, Normal, 1))
+         case None => newGame(Game.mkGame(Normal, 1))
       }
    }
 
@@ -93,7 +95,7 @@ class GameActivity extends Activity {
 
 
    def handleNewGame (diff: Difficulty) = {
-      newGame(Game.mkGame(this, diff, 1))
+      newGame(Game.mkGame(diff, 1))
    }
 
 
