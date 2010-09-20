@@ -88,33 +88,46 @@ class GameView (context: Context, attrs: AttributeSet)
    // A group of math functions to compute the size of specific numbers
    // of hexes given screen width and height measurements
 
-   def calcWidthRadius (numHexes: Int, screenWidth: Int): Double =
-      screenWidth / ((1.5 * numHexes) + 0.5)
-
-   def calcWidthHexMetric (numHexes: Int, radius: Double): Double = {
+   def calcBoardWidth (numHexes: Int, radius: Int): Int = {
       val halfRadius = radius / 2
-      (radius * numHexes) + (halfRadius * numHexes) + halfRadius
+      ((radius * numHexes) + (halfRadius * numHexes) + halfRadius).toInt
    }
 
-   def calcHeightRadius (numHexes: Int, screenHeight: Int): Double =
-      screenHeight / (1.74 * numHexes)
+   def calcWidth (numHexes: Int, screenWidth: Int): (Int, Int) = {
+      val radius = (screenWidth / ((1.5 * numHexes) + 0.5)).toInt
 
-   def calcHeightHexMetric (numHexes: Int, radius: Double): Double =
-      1.74 * radius * numHexes
+      val bWidth = calcBoardWidth(numHexes, radius)
+
+      (bWidth, radius)
+   }
+
+   def calcBoardHeight (numHexes: Int, radius: Int): Int =
+      (1.74 * radius * numHexes).toInt
+
+   def calcHeight (numHexes: Int, screenHeight: Int): (Int, Int) = {
+      val radius = ((screenHeight / ((numHexes * 2) + 1)) / 0.87).toInt
+
+      val bHeight = calcBoardHeight(numHexes, radius)
+
+      (bHeight, radius)
+   }
 
 
    override def onSizeChanged (w: Int, h: Int, oldw: Int, oldh: Int) = {
       super.onSizeChanged(w, h, oldw, oldh)
 
+      val numHexes = 6
+
       // Construct the hex geometry for drawing the entire board
 
-      radius = List(calcWidthRadius(6, w), calcHeightRadius(6, h))
-         .min.toInt
+      val srs = List(calcWidth(numHexes, w), calcHeight(numHexes, h))
+      val sr = srs.sortWith((x, y) => x._1 < y._1).head
+      radius = sr._2
 
       // Values for positioning the board as a whole
-      val boardOffsetX = ((w - (calcWidthHexMetric(6, radius))) / 2)
+      val boardOffsetX = ((w - (calcBoardWidth(numHexes, radius))) / 2)
          .toInt + radius
-      val boardOffsetY = (((h - (calcHeightHexMetric(6, radius))) / 2)
+      val boardOffsetY = (((h - (calcBoardHeight(numHexes, radius))) / 2)
          + (radius * 0.5)).toInt
 
       // Values for positioning individual hexes
