@@ -1,6 +1,8 @@
 package spectrahex.demo.ui
 
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 //import android.util.Log
 
@@ -29,5 +31,11 @@ class DemoGameActivity extends GameActivity {
       } else {
          newGame(Game.mkGame(diff, game.playedGames + 1))
       }
+
+
+   def launchMarket () {
+      val uri = Uri.parse("market://details?id=spectrahex.ui")
+      startActivity(new Intent(Intent.ACTION_VIEW, uri))
+   }
 
 }
