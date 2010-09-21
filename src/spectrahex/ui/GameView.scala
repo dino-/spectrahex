@@ -287,7 +287,11 @@ class GameView (context: Context, attrs: AttributeSet)
             Game.setSelection(game, None)
             true
          }
-         case Some(existingSelection) => Game.doMove(game, touched)
+         case Some(existingSelection) => {
+            val weMoved = Game.doMove(game, touched)
+            if (! weMoved) { Game.setSelection(game, Some(touched)) }
+            true
+         }
          case _ => false
       }
    }
