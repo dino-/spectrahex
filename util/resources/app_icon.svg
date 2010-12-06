@@ -15,9 +15,9 @@
    version="1.1"
    inkscape:version="0.48.0 r9654"
    sodipodi:docname="app_icon.svg"
-   inkscape:export-filename="/home/dino/dev/spectrahex/branches/1.1/res/drawable/app_icon.png"
-   inkscape:export-xdpi="91.928024"
-   inkscape:export-ydpi="91.928024">
+   inkscape:export-filename="/home/dino/dev/spectrahex/branches/1.1/doc/app_icon_demo_512.png"
+   inkscape:export-xdpi="980.56561"
+   inkscape:export-ydpi="980.56561">
   <defs
      id="defs4">
     <inkscape:perspective
@@ -305,7 +305,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
