@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.0 r9654"
-   sodipodi:docname="app_icon_demo.svg"
+   sodipodi:docname="app_icon.svg"
    inkscape:export-filename="/home/dino/dev/spectrahex/branches/1.1/res/drawable/app_icon.png"
    inkscape:export-xdpi="91.928024"
    inkscape:export-ydpi="91.928024">
@@ -62,14 +62,6 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
-    <clipPath
-       clipPathUnits="userSpaceOnUse"
-       id="clipPath3772">
-      <path
-         style="fill:none;stroke:#11f0db;stroke-width:0.99999994;stroke-opacity:1;display:inline"
-         d="m 403.198,426.64789 47.0204,0 -10e-6,46.99326 -47.02039,0 0,-46.99326 z"
-         id="path3774" />
-    </clipPath>
     <clipPath
        clipPathUnits="userSpaceOnUse"
        id="clipPath3776">
@@ -142,6 +134,138 @@
          d="m 29.043685,185.16198 445.567755,-4.5266 4.5239,445.31057 -445.567662,4.52661 -4.523993,-445.31058 z"
          id="path3810" />
     </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3890">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3892"
+         d="m -344.94305,425.03867 422.148088,-4.28868 4.285912,421.88705 -422.14797,4.28868 -4.28603,-421.88705 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3894">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3896"
+         d="m 43.441985,421.09299 422.148095,-4.28868 4.28591,421.88705 -422.147975,4.28868 -4.28603,-421.88705 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3898">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3900"
+         d="M -349.8865,-23.46517 72.261595,-27.753851 76.547507,394.1332 -345.60047,398.42188 -349.8865,-23.46517 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3902">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3904"
+         d="m -156.58765,-137.41025 422.14809,-4.28868 4.28591,421.88705 -422.14797,4.28868 -4.28603,-421.88705 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3906">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3908"
+         d="m -347.32302,200.69844 422.148087,-4.28868 4.285912,421.88705 -422.147969,4.28868 -4.28603,-421.88705 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3910">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3912"
+         d="m -152.03233,310.98408 422.14809,-4.28868 4.28591,421.88705 -422.14797,4.28869 -4.28603,-421.88706 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3914">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3916"
+         d="M 38.780118,-27.861304 460.92821,-32.149986 465.21412,389.73707 43.066147,394.02575 38.780118,-27.861304 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3918">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3920"
+         d="m -154.41218,86.643857 422.14809,-4.288681 4.28591,421.887054 -422.14797,4.28868 -4.28603,-421.887053 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3922">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3924"
+         d="M 41.062014,196.75277 463.2101,192.46409 467.49602,614.35114 45.348043,618.63982 41.062014,196.75277 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3929">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3931"
+         d="m 410.25198,430.31611 36.15297,0 -10e-6,35.84768 -36.15296,0 0,-35.84768 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3933">
+      <path
+         inkscape:connector-curvature="0"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+         id="path3935"
+         d="m 408.51618,432.14452 36,0 -1e-5,36 -35.99999,0 0,-36 z"
+         style="fill:none;stroke:#00ffff;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -150,9 +274,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="10.415845"
-     inkscape:cx="423.20043"
-     inkscape:cy="598.37995"
+     inkscape:zoom="14.730229"
+     inkscape:cx="427.41618"
+     inkscape:cy="599.09628"
      inkscape:document-units="px"
      inkscape:current-layer="layer3"
      showgrid="false"
@@ -181,7 +305,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -208,7 +332,7 @@
        transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,405.18529,415.32157)"
        inkscape:transform-center-x="11.121117"
        inkscape:transform-center-y="0.0050880267"
-       clip-path="url(#clipPath3808)"
+       clip-path="url(#clipPath3922)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -230,7 +354,7 @@
        transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,421.75786,424.88573)"
        inkscape:transform-center-x="11.223994"
        inkscape:transform-center-y="-0.022377146"
-       clip-path="url(#clipPath3804)"
+       clip-path="url(#clipPath3918)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -252,7 +376,7 @@
        transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,405.18529,434.48809)"
        inkscape:transform-center-x="11.121117"
        inkscape:transform-center-y="-0.097690588"
-       clip-path="url(#clipPath3800)"
+       clip-path="url(#clipPath3914)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -274,7 +398,7 @@
        transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,421.74927,405.74249)"
        inkscape:transform-center-x="11.223981"
        inkscape:transform-center-y="0.052933338"
-       clip-path="url(#clipPath3796)"
+       clip-path="url(#clipPath3910)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -296,7 +420,7 @@
        transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,438.30604,415.32157)"
        inkscape:transform-center-x="15.312762"
        inkscape:transform-center-y="-0.030507523"
-       clip-path="url(#clipPath3792)"
+       clip-path="url(#clipPath3906)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -318,12 +442,12 @@
        transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,421.74927,444.00438)"
        inkscape:transform-center-x="11.223981"
        inkscape:transform-center-y="-0.097686179"
-       clip-path="url(#clipPath3788)"
+       clip-path="url(#clipPath3902)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       clip-path="url(#clipPath3784)"
+       clip-path="url(#clipPath3898)"
        inkscape:transform-center-y="-0.078359707"
        inkscape:transform-center-x="15.312767"
        transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,438.33044,434.4499)"
@@ -345,7 +469,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       clip-path="url(#clipPath3780)"
+       clip-path="url(#clipPath3894)"
        inkscape:transform-center-y="0.052939219"
        inkscape:transform-center-x="11.121111"
        transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,405.17669,396.17833)"
@@ -367,7 +491,7 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
-       clip-path="url(#clipPath3776)"
+       clip-path="url(#clipPath3890)"
        inkscape:transform-center-y="0.052939219"
        inkscape:transform-center-x="11.217065"
        transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,438.29744,396.17833)"
@@ -394,40 +518,33 @@
      id="layer3"
      inkscape:label="demo banner"
      style="display:inline">
-    <g
-       style="display:inline"
-       id="g3759"
-       transform="matrix(0.8081,0,0,0.8086,81.677133,86.157663)"
-       clip-path="url(#clipPath3772)"
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:none;display:inline"
+       id="rect3756"
+       width="38"
+       height="11.023705"
+       x="407.51617"
+       y="453.29684"
+       ry="5.5118523"
+       rx="0"
+       clip-path="url(#clipPath3933)" />
+    <text
+       xml:space="preserve"
+       style="font-size:10.28757286px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#ffff00;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans Bold"
+       x="428.43164"
+       y="460.48044"
+       id="text2944"
+       sodipodi:linespacing="125%"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         rx="0"
-         ry="6.8165374"
-         y="454.043"
-         x="392.55878"
-         height="13.633075"
-         width="69.12545"
-         id="rect3756"
-         style="fill:#000000;fill-opacity:1;stroke:none;display:inline" />
-      <text
-         transform="scale(0.99607695,1.0039385)"
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
-         sodipodi:linespacing="125%"
-         id="text2944"
-         y="463.52118"
-         x="428.5365"
-         style="font-size:12.72663212px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#ffff00;fill-opacity:1;stroke:none;display:inline;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans Bold"
-         xml:space="preserve"><tspan
-           style="font-size:12.72663212px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#ffff00;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans Bold"
-           y="463.52118"
-           x="428.5365"
-           id="tspan2946"
-           sodipodi:role="line">DEMO</tspan></text>
-    </g>
+       inkscape:export-ydpi="90"
+       transform="scale(0.99576894,1.004249)"
+       clip-path="url(#clipPath3929)"><tspan
+         sodipodi:role="line"
+         id="tspan2946"
+         x="428.43164"
+         y="460.48044"
+         style="font-size:10.28757286px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;fill:#ffff00;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans Bold">DEMO</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -455,6 +572,6 @@
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        id="path4194"
        d="m 403.00598,426.64789 47.0204,0 -1e-5,46.99326 -47.02039,0 0,-46.99326 z"
-       style="fill:none;stroke:none;stroke-width:0.30000000999999998;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+       style="fill:none;stroke:none;display:inline" />
   </g>
 </svg>
