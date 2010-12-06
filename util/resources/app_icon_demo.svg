@@ -13,8 +13,11 @@
    height="1052.3622047"
    id="svg2"
    version="1.1"
-   inkscape:version="0.47 r22583"
-   sodipodi:docname="app_icon_demo.svg">
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="app_icon_demo.svg"
+   inkscape:export-filename="/home/dino/dev/spectrahex/branches/1.1/res/drawable/app_icon.png"
+   inkscape:export-xdpi="91.928024"
+   inkscape:export-ydpi="91.928024">
   <defs
      id="defs4">
     <inkscape:perspective
@@ -147,11 +150,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.2079227"
-     inkscape:cx="419.64527"
+     inkscape:zoom="10.415845"
+     inkscape:cx="423.20043"
      inkscape:cy="598.37995"
      inkscape:document-units="px"
-     inkscape:current-layer="layer6"
+     inkscape:current-layer="layer3"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
@@ -159,7 +162,8 @@
      inkscape:window-height="1198"
      inkscape:window-x="1280"
      inkscape:window-y="0"
-     inkscape:window-maximized="0">
+     inkscape:window-maximized="0"
+     inkscape:snap-to-guides="false">
     <sodipodi:guide
        orientation="0,1"
        position="260.71429,625.71429"
@@ -188,7 +192,7 @@
      style="display:inline">
     <path
        sodipodi:type="star"
-       style="fill:#ff0000;stroke:#7f7f7f;stroke-width:9.47654057;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#ff0000;stroke:#7f7f7f;stroke-width:11.72331429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
        id="path2818"
        sodipodi:sides="6"
        sodipodi:cx="47.857143"
@@ -200,17 +204,17 @@
        inkscape:flatsided="true"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m -15.714294,460.93363 -65.951441,-111.48306 63.571438,-112.85715 129.522877,-1.37409 65.95144,111.48305 -63.57144,112.85715 -129.522874,1.3741 z"
-       transform="matrix(0.10551829,0.00107198,-0.00107198,0.10551829,400.13983,407.07878)"
-       inkscape:transform-center-x="13.821421"
-       inkscape:transform-center-y="0.0062953316"
+       d="M -15.714294,460.93363 -81.665735,349.45057 -18.094297,236.59342 111.42858,235.21933 177.38002,346.70238 113.80858,459.55953 z"
+       transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,405.18529,415.32157)"
+       inkscape:transform-center-x="11.121117"
+       inkscape:transform-center-y="0.0050880267"
        clip-path="url(#clipPath3808)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        sodipodi:type="star"
-       style="fill:#0000ff;stroke:#7f7f7f;stroke-width:9.47654057;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#0000ff;stroke:#7f7f7f;stroke-width:11.72331429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
        id="path2818-1"
        sodipodi:sides="6"
        sodipodi:cx="47.857143"
@@ -222,17 +226,17 @@
        inkscape:flatsided="true"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m -15.714294,460.93363 -65.951441,-111.48306 63.571438,-112.85715 129.522877,-1.37409 65.95144,111.48305 -63.57144,112.85715 -129.522874,1.3741 z"
-       transform="matrix(0.10551829,0.00107198,-0.00107198,0.10551829,420.6479,418.90683)"
-       inkscape:transform-center-x="13.889358"
-       inkscape:transform-center-y="-0.027669475"
+       d="M -15.714294,460.93363 -81.665735,349.45057 -18.094297,236.59342 111.42858,235.21933 177.38002,346.70238 113.80858,459.55953 z"
+       transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,421.75786,424.88573)"
+       inkscape:transform-center-x="11.223994"
+       inkscape:transform-center-y="-0.022377146"
        clip-path="url(#clipPath3804)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        sodipodi:type="star"
-       style="fill:#ffff00;stroke:#7f7f7f;stroke-width:9.47654057;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#ffff00;stroke:#7f7f7f;stroke-width:11.72331429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
        id="path2818-7"
        sodipodi:sides="6"
        sodipodi:cx="47.857143"
@@ -244,17 +248,17 @@
        inkscape:flatsided="true"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m -15.714294,460.93363 -65.951441,-111.48306 63.571438,-112.85715 129.522877,-1.37409 65.95144,111.48305 -63.57144,112.85715 -129.522874,1.3741 z"
-       transform="matrix(0.10551829,0.00107198,-0.00107198,0.10551829,400.13983,430.78211)"
-       inkscape:transform-center-x="13.82142"
-       inkscape:transform-center-y="-0.061644263"
+       d="M -15.714294,460.93363 -81.665735,349.45057 -18.094297,236.59342 111.42858,235.21933 177.38002,346.70238 113.80858,459.55953 z"
+       transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,405.18529,434.48809)"
+       inkscape:transform-center-x="11.121117"
+       inkscape:transform-center-y="-0.097690588"
        clip-path="url(#clipPath3800)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        sodipodi:type="star"
-       style="fill:#990099;fill-opacity:1;stroke:#7f7f7f;stroke-width:9.47654057;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#990099;fill-opacity:1;stroke:#7f7f7f;stroke-width:11.72331429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
        id="path2818-2"
        sodipodi:sides="6"
        sodipodi:cx="47.857143"
@@ -266,17 +270,17 @@
        inkscape:flatsided="true"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m -15.714294,460.93363 -65.951441,-111.48306 63.571438,-112.85715 129.522877,-1.37409 65.95144,111.48305 -63.57144,112.85715 -129.522874,1.3741 z"
-       transform="matrix(0.10551829,0.00107198,-0.00107198,0.10551829,420.63726,395.23228)"
-       inkscape:transform-center-x="13.889353"
-       inkscape:transform-center-y="0.0062896295"
+       d="M -15.714294,460.93363 -81.665735,349.45057 -18.094297,236.59342 111.42858,235.21933 177.38002,346.70238 113.80858,459.55953 z"
+       transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,421.74927,405.74249)"
+       inkscape:transform-center-x="11.223981"
+       inkscape:transform-center-y="0.052933338"
        clip-path="url(#clipPath3796)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        sodipodi:type="star"
-       style="fill:#00ff00;fill-opacity:1;stroke:#7f7f7f;stroke-width:9.47654057;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#00ff00;fill-opacity:1;stroke:#7f7f7f;stroke-width:11.72331429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
        id="path2818-23"
        sodipodi:sides="6"
        sodipodi:cx="47.857143"
@@ -288,17 +292,17 @@
        inkscape:flatsided="true"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m -15.714294,460.93363 -65.951441,-111.48306 63.571438,-112.85715 129.522877,-1.37409 65.95144,111.48305 -63.57144,112.85715 -129.522874,1.3741 z"
-       transform="matrix(0.10551829,0.00107198,-0.00107198,0.10551829,441.12578,407.07878)"
-       inkscape:transform-center-x="18.889728"
-       inkscape:transform-center-y="-0.037725878"
+       d="M -15.714294,460.93363 -81.665735,349.45057 -18.094297,236.59342 111.42858,235.21933 177.38002,346.70238 113.80858,459.55953 z"
+       transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,438.30604,415.32157)"
+       inkscape:transform-center-x="15.312762"
+       inkscape:transform-center-y="-0.030507523"
        clip-path="url(#clipPath3792)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        sodipodi:type="star"
-       style="fill:#ff8500;fill-opacity:1;stroke:#7f7f7f;stroke-width:9.47654057;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#ff8500;fill-opacity:1;stroke:#7f7f7f;stroke-width:11.72331429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
        id="path2818-5"
        sodipodi:sides="6"
        sodipodi:cx="47.857143"
@@ -310,20 +314,20 @@
        inkscape:flatsided="true"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m -15.714294,460.93363 -65.951441,-111.48306 63.571438,-112.85715 129.522877,-1.37409 65.95144,111.48305 -63.57144,112.85715 -129.522874,1.3741 z"
-       transform="matrix(0.10551829,0.00107198,-0.00107198,0.10551829,420.63726,442.55096)"
-       inkscape:transform-center-x="13.889352"
-       inkscape:transform-center-y="-0.061636152"
+       d="M -15.714294,460.93363 -81.665735,349.45057 -18.094297,236.59342 111.42858,235.21933 177.38002,346.70238 113.80858,459.55953 z"
+       transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,421.74927,444.00438)"
+       inkscape:transform-center-x="11.223981"
+       inkscape:transform-center-y="-0.097686179"
        clip-path="url(#clipPath3788)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        clip-path="url(#clipPath3784)"
-       inkscape:transform-center-y="-0.037727878"
-       inkscape:transform-center-x="18.889728"
-       transform="matrix(0.10551829,0.00107198,-0.00107198,0.10551829,441.15598,430.73489)"
-       d="m -15.714294,460.93363 -65.951441,-111.48306 63.571438,-112.85715 129.522877,-1.37409 65.95144,111.48305 -63.57144,112.85715 -129.522874,1.3741 z"
+       inkscape:transform-center-y="-0.078359707"
+       inkscape:transform-center-x="15.312767"
+       transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,438.33044,434.4499)"
+       d="M -15.714294,460.93363 -81.665735,349.45057 -18.094297,236.59342 111.42858,235.21933 177.38002,346.70238 113.80858,459.55953 z"
        inkscape:randomized="0"
        inkscape:rounded="0"
        inkscape:flatsided="true"
@@ -335,17 +339,17 @@
        sodipodi:cx="47.857143"
        sodipodi:sides="6"
        id="path3668"
-       style="fill:#ff0000;fill-opacity:1;stroke:#7f7f7f;stroke-width:9.47654057;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#ff0000;fill-opacity:1;stroke:#7f7f7f;stroke-width:11.72331429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
        sodipodi:type="star"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        clip-path="url(#clipPath3780)"
-       inkscape:transform-center-y="0.0062953316"
-       inkscape:transform-center-x="13.821421"
-       transform="matrix(0.10551829,0.00107198,-0.00107198,0.10551829,400.12918,383.40423)"
-       d="m -15.714294,460.93363 -65.951441,-111.48306 63.571438,-112.85715 129.522877,-1.37409 65.95144,111.48305 -63.57144,112.85715 -129.522874,1.3741 z"
+       inkscape:transform-center-y="0.052939219"
+       inkscape:transform-center-x="11.121111"
+       transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,405.17669,396.17833)"
+       d="M -15.714294,460.93363 -81.665735,349.45057 -18.094297,236.59342 111.42858,235.21933 177.38002,346.70238 113.80858,459.55953 z"
        inkscape:randomized="0"
        inkscape:rounded="0"
        inkscape:flatsided="true"
@@ -357,17 +361,17 @@
        sodipodi:cx="47.857143"
        sodipodi:sides="6"
        id="path3670"
-       style="fill:#424242;fill-opacity:1;stroke:#7f7f7f;stroke-width:9.47654057;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#424242;fill-opacity:1;stroke:#7f7f7f;stroke-width:11.72331429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
        sodipodi:type="star"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
        clip-path="url(#clipPath3776)"
-       inkscape:transform-center-y="0.0062953316"
-       inkscape:transform-center-x="13.821421"
-       transform="matrix(0.10551829,0.00107198,-0.00107198,0.10551829,441.11514,383.40423)"
-       d="m -15.714294,460.93363 -65.951441,-111.48306 63.571438,-112.85715 129.522877,-1.37409 65.95144,111.48305 -63.57144,112.85715 -129.522874,1.3741 z"
+       inkscape:transform-center-y="0.052939219"
+       inkscape:transform-center-x="11.217065"
+       transform="matrix(0.08526933,8.6680303e-4,-8.6626704e-4,0.08532209,438.29744,396.17833)"
+       d="M -15.714294,460.93363 -81.665735,349.45057 -18.094297,236.59342 111.42858,235.21933 177.38002,346.70238 113.80858,459.55953 z"
        inkscape:randomized="0"
        inkscape:rounded="0"
        inkscape:flatsided="true"
@@ -379,15 +383,21 @@
        sodipodi:cx="47.857143"
        sodipodi:sides="6"
        id="path3716"
-       style="fill:#ffff00;fill-opacity:1;stroke:#7f7f7f;stroke-width:9.47654057;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       style="fill:#ffff00;fill-opacity:1;stroke:#7f7f7f;stroke-width:11.72331429;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:5;stroke-opacity:1;stroke-dasharray:none;display:inline"
        sodipodi:type="star"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="demo banner"
+     style="display:inline">
     <g
        style="display:inline"
        id="g3759"
-       transform="translate(-0.19201514,0)"
+       transform="matrix(0.8081,0,0,0.8086,81.677133,86.157663)"
        clip-path="url(#clipPath3772)"
        inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
        inkscape:export-xdpi="90"
@@ -418,22 +428,33 @@
            id="tspan2946"
            sodipodi:role="line">DEMO</tspan></text>
     </g>
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
-       d="m 403.00598,426.64789 47.0204,0 -1e-5,46.99326 -47.02039,0 0,-46.99326 z"
-       id="path3755"
-       inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Layer 3"
-     style="display:none" />
+     inkscape:label="border"
+     style="display:inline">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 408.51618,432.14452 36,0 -1e-5,36 -35.99999,0 0,-36 z"
+       id="path3755"
+       inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:connector-curvature="0" />
+  </g>
   <g
-     inkscape:label="Layer 2"
+     inkscape:label="bounding box"
      inkscape:groupmode="layer"
      id="layer1"
-     style="display:none" />
+     style="display:inline">
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/dino/dev/spectrahex/branches/work2/res/drawable/app_icon_demo.png"
+       id="path4194"
+       d="m 403.00598,426.64789 47.0204,0 -1e-5,46.99326 -47.02039,0 0,-46.99326 z"
+       style="fill:none;stroke:none;stroke-width:0.30000000999999998;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+  </g>
 </svg>
