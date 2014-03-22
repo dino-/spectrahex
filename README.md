@@ -3,7 +3,7 @@
 
 ## Synopsis
 
-Single player colored hexes puzzle game (Android, Scala)
+Colored hexes puzzle game (Android, Scala)
 
 
 ## Description
