@@ -15,9 +15,9 @@ A challenging single-player strategy game of jumping colored hex tiles over each
 
 Get the source with darcs:
 
-    $ darcs get http://hub.darcs.net/dino/spectrahex
+    $ git clone https://github.com/dino-/spectrahex.git
 
-Or [browse the source](http://hub.darcs.net/dino/spectrahex)
+Or [browse the source](https://github.com/dino-/spectrahex)
 
 
 ## Installing
